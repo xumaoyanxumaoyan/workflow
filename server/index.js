@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url'
 import {
   DOMAINS,
   readTodos, writeTodos, readJournals, writeJournals,
+  readArticles, writeArticles,
   initStorage
 } from './db.js'
 
@@ -268,6 +269,52 @@ api.post('/import', (req, res) => {
     count += clean.length
   }
   res.json({ code: 0, data: { count } })
+})
+
+/* ================= 文章（独立文件 articles.json） ================= */
+
+function normalizeArticle(body) {
+  const nowIso = new Date().toISOString()
+  return {
+    id: crypto.randomUUID(),
+    title: String(body?.title || '').trim() || '未命名文章',
+    content: String(body?.content || ''),
+    createdAt: nowIso,
+    updatedAt: nowIso
+  }
+}
+
+api.get('/articles', (_req, res) => {
+  res.json({ code: 0, data: readArticles() })
+})
+
+api.post('/articles', (req, res) => {
+  const article = normalizeArticle(req.body)
+  const list = readArticles()
+  list.push(article)
+  writeArticles(list)
+  res.json({ code: 0, data: article })
+})
+
+api.put('/articles/:id', (req, res) => {
+  const list = readArticles()
+  const idx = list.findIndex((a) => a.id === req.params.id)
+  if (idx === -1) return res.status(404).json({ code: 1, message: '文章不存在' })
+  const body = req.body || {}
+  const next = { ...list[idx] }
+  if (body.title !== undefined) next.title = String(body.title).trim() || list[idx].title
+  if (body.content !== undefined) next.content = String(body.content)
+  next.updatedAt = new Date().toISOString()
+  list[idx] = next
+  writeArticles(list)
+  res.json({ code: 0, data: next })
+})
+
+api.delete('/articles/:id', (req, res) => {
+  const list = readArticles()
+  const before = list.length
+  writeArticles(list.filter((a) => a.id !== req.params.id))
+  res.json({ code: 0, data: { removed: before - list.length } })
 })
 
 app.use('/api', api)

@@ -41,3 +41,14 @@ export const updateJournal = (id, payload) =>
   request(`/api/journals/${id}`, { method: 'PUT', body: JSON.stringify(payload) })
 
 export const deleteJournal = (id) => request(`/api/journals/${id}`, { method: 'DELETE' })
+
+/* ---------- 文章 ---------- */
+export const listArticles = () => request('/api/articles')
+
+export const createArticle = (payload) =>
+  request('/api/articles', { method: 'POST', body: JSON.stringify(payload) })
+
+export const updateArticle = (id, payload) =>
+  request(`/api/articles/${id}`, { method: 'PUT', body: JSON.stringify(payload) })
+
+export const deleteArticle = (id) => request(`/api/articles/${id}`, { method: 'DELETE' })

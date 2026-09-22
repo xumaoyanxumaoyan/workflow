@@ -12,6 +12,7 @@ const FILES = {
     life: path.join(DATA_DIR, 'todos-life.json')
   },
   journals: path.join(DATA_DIR, 'journals.json'),
+  articles: path.join(DATA_DIR, 'articles.json'),
   legacy: path.join(DATA_DIR, 'db.json') // 旧版单文件，迁移后仅作备份
 }
 
@@ -149,6 +150,26 @@ export function writeJournals(list) {
   writeJson(FILES.journals, list)
 }
 
+/* ---------- 文章模块（独立文件 articles.json） ---------- */
+const seedArticles = [
+  {
+    id: 'seed-a1',
+    title: '示例：我的第一篇文章',
+    content: '这是一篇示例文章。\n\n在这里可以直接写作：输入会自动保存，右侧状态栏实时统计全文字数，选中一段文字还能看到选中了多少字。',
+    tags: [],
+    createdAt: '2025-07-10T10:00:00.000Z',
+    updatedAt: '2025-07-10T10:00:00.000Z'
+  }
+]
+
+export function readArticles() {
+  return readJsonArray(FILES.articles, seedArticles)
+}
+
+export function writeArticles(list) {
+  writeJson(FILES.articles, list)
+}
+
 export function todoFile(domain) {
   return FILES.todos[domain] || FILES.todos.work
 }
@@ -159,8 +180,9 @@ export function journalFile() {
 
 export function initStorage() {
   migrate()
-  // 保证三个文件都存在
+  // 保证所有模块文件都存在
   readTodos('work')
   readTodos('life')
   readJournals()
+  readArticles()
 }

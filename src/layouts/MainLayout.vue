@@ -22,6 +22,10 @@
             <template #icon><edit1-icon /></template>
             写日志
           </t-menu-item>
+          <t-menu-item value="article">
+            <template #icon><file-icon /></template>
+            写文章
+          </t-menu-item>
         </t-menu>
       </t-aside>
 
@@ -35,12 +39,12 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { TaskIcon, Edit1Icon } from 'tdesign-icons-vue-next'
+import { TaskIcon, Edit1Icon, FileIcon } from 'tdesign-icons-vue-next'
 
 const route = useRoute()
 const router = useRouter()
 
-const activeMenu = computed(() => (route.name === 'journal' ? 'journal' : 'todo'))
+const activeMenu = computed(() => (['todo', 'journal', 'article'].includes(route.name) ? route.name : 'todo'))
 
 function onNav(name) {
   router.push({ name })

@@ -213,6 +213,111 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* 写文章：左列表 + 右编辑器 */
+.wb-article-layout {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  height: calc(100vh - 200px);
+}
+
+.wb-article-list {
+  width: 240px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  overflow: auto;
+}
+
+.wb-article-item {
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.wb-article-item:hover {
+  background: var(--td-bg-color-container-hover, #f3f3f3);
+}
+
+.wb-article-item.active {
+  background: var(--td-brand-color-light, #ecf2fe);
+}
+
+.wb-article-item-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wb-article-item.active .wb-article-item-title {
+  color: var(--td-brand-color, #0052d9);
+}
+
+.wb-article-item-meta {
+  margin-top: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+}
+
+.wb-editor-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.wb-editor-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.wb-editor-title .t-input {
+  font-size: 20px;
+}
+
+.wb-editor {
+  flex: 1;
+  margin-top: 8px;
+  border: none;
+  outline: none;
+  resize: none;
+  background: transparent;
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
+  font-family: inherit;
+}
+
+.wb-editor-status {
+  border-top: 1px solid var(--td-component-stroke, #e7e7e7);
+  padding-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+  font-variant-numeric: tabular-nums;
+}
+
+.wb-editor-selected {
+  color: var(--td-brand-color, #0052d9);
+  font-weight: 500;
+}
+
+.wb-editor-saving {
+  color: var(--td-text-color-placeholder, rgba(0, 0, 0, 0.4));
+}
+
 .wb-empty {
   padding: 32px 0;
   text-align: center;

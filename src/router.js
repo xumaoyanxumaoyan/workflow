@@ -18,6 +18,12 @@ const routes = [
         name: 'journal',
         component: () => import('./pages/JournalPage.vue'),
         meta: { title: '写日志' }
+      },
+      {
+        path: 'article',
+        name: 'article',
+        component: () => import('./pages/ArticlePage.vue'),
+        meta: { title: '写文章' }
       }
     ]
   },
