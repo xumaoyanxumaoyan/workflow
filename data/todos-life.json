@@ -1,0 +1,30 @@
+[
+  {
+    "id": "seed-life-1",
+    "title": "预约周末体检",
+    "desc": "提前确认体检套餐与空腹要求。",
+    "priority": "low",
+    "status": "todo",
+    "dueDate": "",
+    "tags": [
+      "健康"
+    ],
+    "createdAt": "2025-07-03T08:30:00.000Z",
+    "updatedAt": "2025-07-03T08:30:00.000Z",
+    "completedAt": null
+  },
+  {
+    "id": "seed-life-2",
+    "title": "给阳台绿植换盆",
+    "desc": "买营养土和两个大一号的花盆。",
+    "priority": "medium",
+    "status": "todo",
+    "dueDate": "",
+    "tags": [
+      "居家"
+    ],
+    "createdAt": "2025-07-05T12:00:00.000Z",
+    "updatedAt": "2025-07-05T12:00:00.000Z",
+    "completedAt": null
+  }
+]
