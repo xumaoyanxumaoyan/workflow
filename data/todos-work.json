@@ -62,13 +62,49 @@
   {
     "id": "5b3e45f0-104a-4c4f-bcb7-ede328ba5c5b",
     "title": "Wuyou.Refine",
-    "desc": "实现图文发布的限制",
+    "desc": "实现短视频的限制",
     "priority": "low",
-    "status": "todo",
+    "status": "doing",
     "dueDate": "2026-09-22",
     "tags": [],
     "createdAt": "2026-09-22T03:58:49.204Z",
-    "updatedAt": "2026-09-22T03:58:49.204Z",
+    "updatedAt": "2026-09-22T10:09:44.831Z",
+    "completedAt": null
+  },
+  {
+    "id": "a5e42855-e4f9-4097-8727-fc31f9e8ae5f",
+    "title": "解决bug",
+    "desc": "hongsnatch WareSync同步模块无需重试",
+    "priority": "medium",
+    "status": "done",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-09-22T09:02:37.782Z",
+    "updatedAt": "2026-09-22T09:17:58.587Z",
+    "completedAt": "2026-09-22T09:17:58.587Z"
+  },
+  {
+    "id": "e026e232-8e08-42df-b7bd-2237baa1b704",
+    "title": "前端规范",
+    "desc": "retry全部去除",
+    "priority": "medium",
+    "status": "todo",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-09-22T10:10:22.093Z",
+    "updatedAt": "2026-09-22T10:10:22.093Z",
+    "completedAt": null
+  },
+  {
+    "id": "4bb94b05-3a2f-4785-9aa0-ff6bed40330f",
+    "title": "解决bug",
+    "desc": "jdwap 分享无法使用",
+    "priority": "medium",
+    "status": "todo",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-09-22T10:10:39.603Z",
+    "updatedAt": "2026-09-22T10:10:39.603Z",
     "completedAt": null
   }
 ]
