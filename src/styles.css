@@ -1,0 +1,226 @@
+:root {
+  --wb-bg: #f3f5f8;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--wb-bg);
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.wb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 64px;
+  background: #fff;
+  border-bottom: 1px solid var(--td-component-stroke, #e7e7e7);
+}
+
+.wb-header-right {
+  font-size: 13px;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+}
+
+/* 侧边导航区域 */
+.wb-body {
+  height: calc(100vh - 64px);
+  overflow: hidden;
+}
+
+.wb-aside {
+  background: #fff;
+  border-right: 1px solid var(--td-component-stroke, #e7e7e7);
+}
+
+.wb-menu {
+  height: 100%;
+  padding-top: 8px;
+}
+
+.wb-content-wrap {
+  background: var(--wb-bg);
+  overflow: auto;
+  height: 100%;
+}
+
+/* 页面头 */
+.wb-page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+/* 领域 Tab 卡片 */
+.wb-domain-tabs-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 0 20px;
+  margin-bottom: 16px;
+}
+
+.wb-page-head h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
+}
+
+.wb-journal-date {
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
+  font-variant-numeric: tabular-nums;
+}
+
+.wb-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
+}
+
+.wb-title .logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 18px;
+  background: linear-gradient(135deg, #0052d9, #7b61ff);
+}
+
+.wb-content {
+  padding: 20px 24px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 统计卡片 */
+.wb-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.wb-stat-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px 20px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  user-select: none;
+}
+
+.wb-stat-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.wb-stat-card.active {
+  border-color: var(--td-brand-color, #0052d9);
+}
+
+.wb-stat-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+}
+
+.wb-stat-value {
+  margin-top: 6px;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.wb-stat-value.done {
+  color: var(--td-success-color, #2ba471);
+}
+
+.wb-stat-value.overdue {
+  color: var(--td-error-color, #d54941);
+}
+
+/* 工具栏 */
+.wb-toolbar {
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px 20px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.wb-toolbar .spacer {
+  flex: 1;
+}
+
+/* 表格卡片 */
+.wb-table-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 8px 20px 20px;
+}
+
+.wb-title-cell .title {
+  font-weight: 500;
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
+}
+
+.wb-title-cell.done .title {
+  text-decoration: line-through;
+  color: var(--td-text-color-placeholder, rgba(0, 0, 0, 0.4));
+}
+
+.wb-title-cell .desc {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+  max-width: 420px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wb-due.overdue {
+  color: var(--td-error-color, #d54941);
+  font-weight: 500;
+}
+
+.wb-due.none {
+  color: var(--td-text-color-placeholder, rgba(0, 0, 0, 0.4));
+}
+
+.wb-created {
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+  font-variant-numeric: tabular-nums;
+}
+
+.wb-empty {
+  padding: 32px 0;
+  text-align: center;
+  color: var(--td-text-color-placeholder, rgba(0, 0, 0, 0.4));
+}
+
+@media (max-width: 860px) {
+  .wb-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
