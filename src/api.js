@@ -52,3 +52,22 @@ export const updateArticle = (id, payload) =>
   request(`/api/articles/${id}`, { method: 'PUT', body: JSON.stringify(payload) })
 
 export const deleteArticle = (id) => request(`/api/articles/${id}`, { method: 'DELETE' })
+
+/* ---------- 备忘录 ---------- */
+export const listMemos = () => request('/api/memos')
+
+export const createMemoFolder = (name) =>
+  request('/api/memos/folders', { method: 'POST', body: JSON.stringify({ name }) })
+
+export const renameMemoFolder = (id, name) =>
+  request(`/api/memos/folders/${id}`, { method: 'PUT', body: JSON.stringify({ name }) })
+
+export const deleteMemoFolder = (id) => request(`/api/memos/folders/${id}`, { method: 'DELETE' })
+
+export const createMemoItem = (payload) =>
+  request('/api/memos/items', { method: 'POST', body: JSON.stringify(payload) })
+
+export const updateMemoItem = (id, payload) =>
+  request(`/api/memos/items/${id}`, { method: 'PUT', body: JSON.stringify(payload) })
+
+export const deleteMemoItem = (id) => request(`/api/memos/items/${id}`, { method: 'DELETE' })

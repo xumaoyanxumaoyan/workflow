@@ -213,6 +213,10 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+.wb-completed {
+  color: var(--td-success-color, #2ba471);
+}
+
 /* 写文章：左列表 + 右编辑器 */
 .wb-article-layout {
   display: flex;
@@ -316,6 +320,93 @@ body {
 
 .wb-editor-saving {
   color: var(--td-text-color-placeholder, rgba(0, 0, 0, 0.4));
+}
+
+/* 备忘录：左文件夹 + 右条目 */
+.wb-memo-layout {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.wb-memo-folders {
+  width: 220px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px 10px;
+}
+
+.wb-memo-folder-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+}
+
+.wb-memo-folder {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
+}
+
+.wb-memo-folder:hover {
+  background: var(--td-bg-color-container-hover, #f3f3f3);
+}
+
+.wb-memo-folder.active {
+  background: var(--td-brand-color-light, #ecf2fe);
+  color: var(--td-brand-color, #0052d9);
+}
+
+.wb-memo-folder .name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wb-memo-folder .count {
+  font-size: 12px;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.5));
+  font-variant-numeric: tabular-nums;
+}
+
+.wb-memo-folder .ops {
+  display: none;
+  gap: 6px;
+  align-items: center;
+}
+
+.wb-memo-folder:hover .ops {
+  display: inline-flex;
+}
+
+.wb-memo-folder:hover .count {
+  display: none;
+}
+
+.wb-memo-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.wb-memo-title-cell .desc {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+  max-width: 420px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .wb-empty {

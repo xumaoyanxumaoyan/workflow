@@ -13,6 +13,7 @@ const FILES = {
   },
   journals: path.join(DATA_DIR, 'journals.json'),
   articles: path.join(DATA_DIR, 'articles.json'),
+  memos: path.join(DATA_DIR, 'memos.json'),
   legacy: path.join(DATA_DIR, 'db.json') // 旧版单文件，迁移后仅作备份
 }
 
@@ -170,6 +171,65 @@ export function writeArticles(list) {
   writeJson(FILES.articles, list)
 }
 
+/* ---------- 备忘录模块（独立文件 memos.json：folders + items） ---------- */
+const seedMemos = {
+  folders: [
+    { id: 'seed-mf1', name: '常用站点', createdAt: '2025-07-10T10:00:00.000Z' }
+  ],
+  items: [
+    {
+      id: 'seed-mi1',
+      folderId: 'seed-mf1',
+      title: 'GitHub',
+      url: 'https://github.com',
+      remark: '代码托管平台',
+      createdAt: '2025-07-10T10:00:00.000Z',
+      updatedAt: '2025-07-10T10:00:00.000Z'
+    },
+    {
+      id: 'seed-mi2',
+      folderId: 'seed-mf1',
+      title: 'TDesign 组件库',
+      url: 'https://tdesign.tencent.com',
+      remark: 'Vue3 组件库文档',
+      createdAt: '2025-07-10T10:01:00.000Z',
+      updatedAt: '2025-07-10T10:01:00.000Z'
+    }
+  ]
+}
+
+function readJsonObj(file, seed) {
+  ensureDataDir()
+  if (!fs.existsSync(file)) {
+    writeJson(file, seed)
+    return JSON.parse(JSON.stringify(seed))
+  }
+  try {
+    const data = JSON.parse(fs.readFileSync(file, 'utf8'))
+    return {
+      folders: Array.isArray(data?.folders) ? data.folders : [],
+      items: Array.isArray(data?.items) ? data.items : []
+    }
+  } catch {
+    try {
+      fs.copyFileSync(file, file + '.broken-' + Date.now())
+    } catch { /* ignore */ }
+    fs.writeFileSync(file, JSON.stringify(seed, null, 2), 'utf8')
+    return JSON.parse(JSON.stringify(seed))
+  }
+}
+
+export function readMemos() {
+  return readJsonObj(FILES.memos, seedMemos)
+}
+
+export function writeMemos(data) {
+  writeJson(FILES.memos, {
+    folders: Array.isArray(data?.folders) ? data.folders : [],
+    items: Array.isArray(data?.items) ? data.items : []
+  })
+}
+
 export function todoFile(domain) {
   return FILES.todos[domain] || FILES.todos.work
 }
@@ -185,4 +245,5 @@ export function initStorage() {
   readTodos('life')
   readJournals()
   readArticles()
+  readMemos()
 }

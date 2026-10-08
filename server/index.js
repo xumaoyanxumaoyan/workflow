@@ -6,6 +6,7 @@ import {
   DOMAINS,
   readTodos, writeTodos, readJournals, writeJournals,
   readArticles, writeArticles,
+  readMemos, writeMemos,
   initStorage
 } from './db.js'
 
@@ -185,11 +186,13 @@ api.delete('/journals/:id', (req, res) => {
 
 /* ================= 导出 / 导入 ================= */
 
-// 导出：三个模块打包成一个 JSON 备份
+// 导出：所有模块打包成一个 JSON 备份
 api.get('/export', (_req, res) => {
   const bundle = {
     todos: { work: readTodos('work'), life: readTodos('life') },
-    journals: readJournals()
+    journals: readJournals(),
+    articles: readArticles(),
+    memos: readMemos()
   }
   res.setHeader('Content-Type', 'application/json; charset=utf-8')
   res.setHeader('Content-Disposition', 'attachment; filename="todo-workbench-export.json"')
@@ -268,6 +271,47 @@ api.post('/import', (req, res) => {
     writeJournals(clean)
     count += clean.length
   }
+  const articlesIn = Array.isArray(body?.articles) ? body.articles : null
+  if (articlesIn !== null) {
+    const clean = dedup(
+      articlesIn.filter((a) => a && typeof a === 'object').map((a) => ({
+        id: String(a.id || crypto.randomUUID()),
+        title: String(a.title || '未命名文章'),
+        content: String(a.content || ''),
+        createdAt: a.createdAt || new Date().toISOString(),
+        updatedAt: a.updatedAt || new Date().toISOString()
+      }))
+    )
+    writeArticles(clean)
+    count += clean.length
+  }
+  if (body?.memos && typeof body.memos === 'object') {
+    const foldersIn = Array.isArray(body.memos.folders) ? body.memos.folders : null
+    const itemsIn = Array.isArray(body.memos.items) ? body.memos.items : null
+    if (foldersIn !== null) {
+      const clean = dedup(
+        foldersIn.filter((f) => f && typeof f === 'object').map((f) => ({
+          id: String(f.id || crypto.randomUUID()),
+          name: String(f.name || '未命名文件夹'),
+          createdAt: f.createdAt || new Date().toISOString()
+        }))
+      )
+      const validIds = new Set(clean.map((f) => f.id))
+      const items = dedup(
+        itemsIn.filter((i) => i && typeof i === 'object').map((i) => ({
+          id: String(i.id || crypto.randomUUID()),
+          folderId: i.folderId && validIds.has(String(i.folderId)) ? String(i.folderId) : null,
+          title: String(i.title || '未命名备忘'),
+          url: String(i.url || '').trim(),
+          remark: String(i.remark || ''),
+          createdAt: i.createdAt || new Date().toISOString(),
+          updatedAt: i.updatedAt || new Date().toISOString()
+        }))
+      )
+      writeMemos({ folders: clean, items })
+      count += clean.length + items.length
+    }
+  }
   res.json({ code: 0, data: { count } })
 })
 
@@ -315,6 +359,99 @@ api.delete('/articles/:id', (req, res) => {
   const before = list.length
   writeArticles(list.filter((a) => a.id !== req.params.id))
   res.json({ code: 0, data: { removed: before - list.length } })
+})
+
+/* ================= 备忘录（独立文件 memos.json：folders + items） ================= */
+
+api.get('/memos', (_req, res) => {
+  res.json({ code: 0, data: readMemos() })
+})
+
+// --- 文件夹 ---
+api.post('/memos/folders', (req, res) => {
+  const name = String(req.body?.name || '').trim()
+  if (!name) return res.status(400).json({ code: 1, message: '文件夹名称不能为空' })
+  const data = readMemos()
+  if (data.folders.some((f) => f.name === name)) {
+    return res.status(400).json({ code: 1, message: '同名文件夹已存在' })
+  }
+  const folder = { id: crypto.randomUUID(), name, createdAt: new Date().toISOString() }
+  data.folders.push(folder)
+  writeMemos(data)
+  res.json({ code: 0, data: folder })
+})
+
+api.put('/memos/folders/:id', (req, res) => {
+  const name = String(req.body?.name || '').trim()
+  if (!name) return res.status(400).json({ code: 1, message: '文件夹名称不能为空' })
+  const data = readMemos()
+  const folder = data.folders.find((f) => f.id === req.params.id)
+  if (!folder) return res.status(404).json({ code: 1, message: '文件夹不存在' })
+  if (data.folders.some((f) => f.name === name && f.id !== folder.id)) {
+    return res.status(400).json({ code: 1, message: '同名文件夹已存在' })
+  }
+  folder.name = name
+  writeMemos(data)
+  res.json({ code: 0, data: folder })
+})
+
+// 删除文件夹：其中条目移入「未分类」
+api.delete('/memos/folders/:id', (req, res) => {
+  const data = readMemos()
+  const before = data.folders.length
+  data.folders = data.folders.filter((f) => f.id !== req.params.id)
+  data.items = data.items.map((i) => (i.folderId === req.params.id ? { ...i, folderId: null, updatedAt: new Date().toISOString() } : i))
+  writeMemos(data)
+  res.json({ code: 0, data: { removed: before - data.folders.length } })
+})
+
+// --- 条目 ---
+api.post('/memos/items', (req, res) => {
+  const data = readMemos()
+  const item = normalizeItem(req.body, data.folders)
+  data.items.push(item)
+  writeMemos(data)
+  res.json({ code: 0, data: item })
+})
+
+function normalizeItem(body, folders) {
+  const nowIso = new Date().toISOString()
+  const folderId = body?.folderId && folders.some((f) => f.id === body.folderId) ? String(body.folderId) : null
+  return {
+    id: crypto.randomUUID(),
+    folderId,
+    title: String(body?.title || '').trim() || '未命名备忘',
+    url: String(body?.url || '').trim(),
+    remark: String(body?.remark || ''),
+    createdAt: nowIso,
+    updatedAt: nowIso
+  }
+}
+
+api.put('/memos/items/:id', (req, res) => {
+  const data = readMemos()
+  const idx = data.items.findIndex((i) => i.id === req.params.id)
+  if (idx === -1) return res.status(404).json({ code: 1, message: '备忘不存在' })
+  const body = req.body || {}
+  const item = data.items[idx]
+  if (body.title !== undefined) item.title = String(body.title).trim() || item.title
+  if (body.url !== undefined) item.url = String(body.url).trim()
+  if (body.remark !== undefined) item.remark = String(body.remark)
+  if (body.folderId !== undefined) {
+    item.folderId = body.folderId && data.folders.some((f) => f.id === body.folderId) ? String(body.folderId) : null
+  }
+  item.updatedAt = new Date().toISOString()
+  data.items[idx] = item
+  writeMemos(data)
+  res.json({ code: 0, data: item })
+})
+
+api.delete('/memos/items/:id', (req, res) => {
+  const data = readMemos()
+  const before = data.items.length
+  data.items = data.items.filter((i) => i.id !== req.params.id)
+  writeMemos(data)
+  res.json({ code: 0, data: { removed: before - data.items.length } })
 })
 
 app.use('/api', api)

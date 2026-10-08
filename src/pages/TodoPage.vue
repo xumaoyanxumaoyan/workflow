@@ -110,6 +110,12 @@
           <span class="wb-created">{{ fmtDateTime(row.createdAt) }}</span>
         </template>
 
+        <template #completed-cell="{ row }">
+          <span class="wb-created" :class="{ 'wb-completed': row.completedAt }">
+            {{ row.completedAt ? fmtDateTime(row.completedAt) : '—' }}
+          </span>
+        </template>
+
         <template #tags-cell="{ row }">
           <t-tag v-for="tag in row.tags" :key="tag" variant="light" size="small" style="margin-right: 4px">
             {{ tag }}
@@ -261,6 +267,7 @@ const columns = [
   { colKey: 'priority', title: '优先级', cell: 'priority-cell', width: 90 },
   { colKey: 'dueDate', title: '截止日期', cell: 'due-cell', width: 150 },
   { colKey: 'createdAt', title: '创建时间', cell: 'created-cell', width: 150 },
+  { colKey: 'completedAt', title: '完成时间', cell: 'completed-cell', width: 150 },
   { colKey: 'tags', title: '标签', cell: 'tags-cell', minWidth: 120 },
   { colKey: 'op', title: '操作', cell: 'op-cell', width: 120 }
 ]

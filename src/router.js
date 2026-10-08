@@ -24,6 +24,12 @@ const routes = [
         name: 'article',
         component: () => import('./pages/ArticlePage.vue'),
         meta: { title: '写文章' }
+      },
+      {
+        path: 'memo',
+        name: 'memo',
+        component: () => import('./pages/MemoPage.vue'),
+        meta: { title: '备忘录' }
       }
     ]
   },
