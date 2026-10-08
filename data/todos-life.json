@@ -4,35 +4,35 @@
     "title": "25中午揍饭",
     "desc": "备菜、备酒、游泳",
     "priority": "high",
-    "status": "todo",
+    "status": "done",
     "dueDate": "2026-09-25",
     "tags": [],
     "createdAt": "2026-09-24T06:46:47.414Z",
-    "updatedAt": "2026-09-24T06:50:11.892Z",
-    "completedAt": null
+    "updatedAt": "2026-10-08T02:28:48.730Z",
+    "completedAt": "2026-10-08T02:28:48.730Z"
   },
   {
     "id": "c5250f61-c3e5-45c0-8126-cb5573927b41",
     "title": "26做客",
     "desc": "备礼、备穿搭",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-09-24T06:48:49.670Z",
-    "updatedAt": "2026-09-24T06:48:49.670Z",
-    "completedAt": null
+    "updatedAt": "2026-10-08T02:28:48.736Z",
+    "completedAt": "2026-10-08T02:28:48.736Z"
   },
   {
     "id": "975f743f-a69b-4556-8d63-04a0b0ff777e",
     "title": "25睡觉",
     "desc": "早点睡觉、游泳",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-09-24T06:49:47.762Z",
-    "updatedAt": "2026-09-24T06:50:04.658Z",
-    "completedAt": null
+    "updatedAt": "2026-10-08T02:28:48.733Z",
+    "completedAt": "2026-10-08T02:28:48.733Z"
   }
 ]

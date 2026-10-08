@@ -71,3 +71,16 @@ export const updateMemoItem = (id, payload) =>
   request(`/api/memos/items/${id}`, { method: 'PUT', body: JSON.stringify(payload) })
 
 export const deleteMemoItem = (id) => request(`/api/memos/items/${id}`, { method: 'DELETE' })
+
+/* ---------- 减肥管理 ---------- */
+export const listFitness = () => request('/api/fitness')
+
+// 同一日期保存会自动覆盖当天记录（服务端按日期 upsert）
+export const saveFitness = (payload) =>
+  request('/api/fitness', { method: 'POST', body: JSON.stringify(payload) })
+
+export const deleteFitness = (id) => request(`/api/fitness/${id}`, { method: 'DELETE' })
+
+export const listFreqFoods = () => request('/api/freq-foods')
+
+export const deleteFreqFood = (id) => request(`/api/freq-foods/${id}`, { method: 'DELETE' })

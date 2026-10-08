@@ -30,6 +30,12 @@ const routes = [
         name: 'memo',
         component: () => import('./pages/MemoPage.vue'),
         meta: { title: '备忘录' }
+      },
+      {
+        path: 'fitness',
+        name: 'fitness',
+        component: () => import('./pages/FitnessPage.vue'),
+        meta: { title: '减肥管理' }
       }
     ]
   },
@@ -42,5 +48,5 @@ export const router = createRouter({
 })
 
 router.afterEach((to) => {
-  document.title = `${to.meta.title || '工作台'} · TDesign 待办与日志`
+  document.title = `${to.meta.title || '工作台'} · 徐茂艳的工作台`
 })

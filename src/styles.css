@@ -415,6 +415,113 @@ body {
   color: var(--td-text-color-placeholder, rgba(0, 0, 0, 0.4));
 }
 
+/* 减肥管理 */
+.wb-fitness-form {
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px 20px 14px;
+}
+
+.wb-fitness-editing {
+  box-shadow: 0 0 0 2px var(--td-brand-color, #0052d9) inset;
+}
+
+.wb-fitness-banner {
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--td-brand-color-light, #ecf2fe);
+  color: var(--td-brand-color, #0052d9);
+  font-size: 13px;
+}
+
+.wb-fitness-banner b {
+  font-weight: 600;
+}
+
+.wb-fitness-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.wb-fitness-foods {
+  border-top: 1px dashed var(--td-component-stroke, #e7e7e7);
+  margin-top: 8px;
+  padding-top: 12px;
+}
+
+.wb-fitness-foods-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+  margin-bottom: 8px;
+  padding-right: 4px;
+}
+
+.wb-fitness-food-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.wb-freq-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.wb-freq-label {
+  font-size: 13px;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+}
+
+.wb-freq-chip {
+  cursor: pointer;
+  user-select: none;
+}
+
+.wb-freq-chip:hover {
+  color: var(--td-brand-color, #0052d9);
+  border-color: var(--td-brand-color, #0052d9);
+}
+
+.wb-freq-x {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 6px;
+  padding: 0 2px;
+  color: var(--td-text-color-placeholder, rgba(0, 0, 0, 0.4));
+  font-weight: 400;
+}
+
+.wb-freq-x:hover {
+  color: var(--td-error-color, #d54941);
+}
+
+.wb-fitness-summary {
+  border-top: 1px solid var(--td-component-stroke, #e7e7e7);
+  margin-top: 10px;
+  padding-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+  font-variant-numeric: tabular-nums;
+}
+
+.wb-fitness-summary b {
+  color: var(--td-brand-color, #0052d9);
+  font-weight: 600;
+}
+
 @media (max-width: 860px) {
   .wb-stats {
     grid-template-columns: repeat(2, 1fr);

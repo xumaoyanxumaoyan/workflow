@@ -30,6 +30,10 @@
             <template #icon><bookmark-icon /></template>
             备忘录
           </t-menu-item>
+          <t-menu-item value="fitness">
+            <template #icon><rocket-icon /></template>
+            减肥管理
+          </t-menu-item>
         </t-menu>
       </t-aside>
 
@@ -43,12 +47,12 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { TaskIcon, Edit1Icon, FileIcon, BookmarkIcon } from 'tdesign-icons-vue-next'
+import { TaskIcon, Edit1Icon, FileIcon, BookmarkIcon, RocketIcon } from 'tdesign-icons-vue-next'
 
 const route = useRoute()
 const router = useRouter()
 
-const activeMenu = computed(() => (['todo', 'journal', 'article', 'memo'].includes(route.name) ? route.name : 'todo'))
+const activeMenu = computed(() => (['todo', 'journal', 'article', 'memo', 'fitness'].includes(route.name) ? route.name : 'todo'))
 
 function onNav(name) {
   router.push({ name })

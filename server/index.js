@@ -7,6 +7,8 @@ import {
   readTodos, writeTodos, readJournals, writeJournals,
   readArticles, writeArticles,
   readMemos, writeMemos,
+  readFitness, writeFitness,
+  readFreqFoods, writeFreqFoods,
   initStorage
 } from './db.js'
 
@@ -192,7 +194,9 @@ api.get('/export', (_req, res) => {
     todos: { work: readTodos('work'), life: readTodos('life') },
     journals: readJournals(),
     articles: readArticles(),
-    memos: readMemos()
+    memos: readMemos(),
+    fitness: readFitness(),
+    freqFoods: readFreqFoods()
   }
   res.setHeader('Content-Type', 'application/json; charset=utf-8')
   res.setHeader('Content-Disposition', 'attachment; filename="todo-workbench-export.json"')
@@ -311,6 +315,30 @@ api.post('/import', (req, res) => {
       writeMemos({ folders: clean, items })
       count += clean.length + items.length
     }
+  }
+  const fitnessIn = Array.isArray(body?.fitness) ? body.fitness : null
+  if (fitnessIn !== null) {
+    const clean = dedup(
+      fitnessIn.filter((r) => r && typeof r === 'object').map((r) => normalizeFitnessRecord(r, null))
+    )
+    writeFitness(clean)
+    count += clean.length
+  }
+  const freqIn = Array.isArray(body?.freqFoods) ? body.freqFoods : null
+  if (freqIn !== null) {
+    const clean = dedup(
+      freqIn.filter((f) => f && typeof f === 'object').map((f) => ({
+        id: String(f.id || crypto.randomUUID()),
+        name: String(f.name || '').trim(),
+        kcalPer100g: numOr(f.kcalPer100g, 0),
+        useCount: numOr(f.useCount, 0),
+        lastUsedAt: f.lastUsedAt || new Date().toISOString(),
+        createdAt: f.createdAt || new Date().toISOString(),
+        updatedAt: f.updatedAt || new Date().toISOString()
+      })).filter((f) => f.name)
+    )
+    writeFreqFoods(clean)
+    count += clean.length
   }
   res.json({ code: 0, data: { count } })
 })
@@ -452,6 +480,94 @@ api.delete('/memos/items/:id', (req, res) => {
   data.items = data.items.filter((i) => i.id !== req.params.id)
   writeMemos(data)
   res.json({ code: 0, data: { removed: before - data.items.length } })
+})
+
+/* ================= 减肥管理（独立文件 fitness.json，按日期 upsert） ================= */
+
+const numOr = (v, fallback = null) => {
+  const n = Number(v)
+  return Number.isFinite(n) && n >= 0 ? n : fallback
+}
+
+function normalizeFitnessRecord(body, prev = null) {
+  const nowIso = new Date().toISOString()
+  return {
+    id: prev?.id || crypto.randomUUID(),
+    date: /^\d{4}-\d{2}-\d{2}$/.test(String(body?.date || '')) ? String(body.date) : (prev?.date || nowIso.slice(0, 10)),
+    weight: body?.weight !== undefined && body?.weight !== null && body?.weight !== '' ? numOr(body.weight, prev?.weight ?? null) : (prev?.weight ?? null),
+    foods: Array.isArray(body?.foods)
+      ? body.foods
+          .filter((f) => f && typeof f === 'object' && String(f.name || '').trim())
+          .map((f) => ({
+            name: String(f.name).trim(),
+            grams: numOr(f.grams),
+            kcal: numOr(f.kcal)
+          }))
+      : (prev?.foods || []),
+    exerciseMin: body?.exerciseMin !== undefined && body?.exerciseMin !== null && body?.exerciseMin !== '' ? numOr(body.exerciseMin, prev?.exerciseMin ?? null) : (prev?.exerciseMin ?? null),
+    caloriesBurned: body?.caloriesBurned !== undefined && body?.caloriesBurned !== null && body?.caloriesBurned !== '' ? numOr(body.caloriesBurned, prev?.caloriesBurned ?? null) : (prev?.caloriesBurned ?? null),
+    sleepHours: body?.sleepHours !== undefined && body?.sleepHours !== null && body?.sleepHours !== '' ? numOr(body.sleepHours, prev?.sleepHours ?? null) : (prev?.sleepHours ?? null),
+    note: body?.note !== undefined ? String(body.note) : (prev?.note || ''),
+    createdAt: prev?.createdAt || nowIso,
+    updatedAt: nowIso
+  }
+}
+
+// 保存记录时自动学习：有 名称+克重+千卡 的食物 → 更新每 100g 热量密度
+function learnFreqFoods(foods) {
+  const list = readFreqFoods()
+  const nowIso = new Date().toISOString()
+  for (const f of foods) {
+    if (!f?.name || !f?.grams || !f?.kcal) continue
+    const density = Math.round(((f.kcal / f.grams) * 100) * 10) / 10
+    const found = list.find((x) => x.name === f.name)
+    if (found) {
+      found.kcalPer100g = density
+      found.useCount++
+      found.lastUsedAt = nowIso
+      found.updatedAt = nowIso
+    } else {
+      list.push({ id: crypto.randomUUID(), name: f.name, kcalPer100g: density, useCount: 1, lastUsedAt: nowIso, createdAt: nowIso, updatedAt: nowIso })
+    }
+  }
+  writeFreqFoods(list)
+}
+
+// 列表
+api.get('/fitness', (_req, res) => {
+  res.json({ code: 0, data: readFitness() })
+})
+
+// 保存（同一日期视为同一天，直接覆盖更新）
+api.post('/fitness', (req, res) => {
+  const list = readFitness()
+  const date = /^\d{4}-\d{2}-\d{2}$/.test(String(req.body?.date || '')) ? String(req.body.date) : new Date().toISOString().slice(0, 10)
+  const idx = list.findIndex((r) => r.date === date)
+  const record = normalizeFitnessRecord(req.body, idx !== -1 ? list[idx] : null)
+  if (idx !== -1) list[idx] = record
+  else list.push(record)
+  writeFitness(list)
+  learnFreqFoods(record.foods)
+  res.json({ code: 0, data: record })
+})
+
+api.delete('/fitness/:id', (req, res) => {
+  const list = readFitness()
+  const before = list.length
+  writeFitness(list.filter((r) => r.id !== req.params.id))
+  res.json({ code: 0, data: { removed: before - list.length } })
+})
+
+/* ---------- 常吃食物库 ---------- */
+api.get('/freq-foods', (_req, res) => {
+  res.json({ code: 0, data: readFreqFoods() })
+})
+
+api.delete('/freq-foods/:id', (req, res) => {
+  const list = readFreqFoods()
+  const before = list.length
+  writeFreqFoods(list.filter((f) => f.id !== req.params.id))
+  res.json({ code: 0, data: { removed: before - list.length } })
 })
 
 app.use('/api', api)

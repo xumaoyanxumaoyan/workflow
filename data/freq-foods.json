@@ -1,0 +1,38 @@
+[
+  {
+    "id": "d3882c58-1b8f-4e43-985a-8393d9d725b8",
+    "name": "鸡蛋",
+    "kcalPer100g": 144,
+    "useCount": 6,
+    "lastUsedAt": "2026-10-08T02:22:32.713Z",
+    "createdAt": "2026-10-08T02:09:24.634Z",
+    "updatedAt": "2026-10-08T02:22:32.713Z"
+  },
+  {
+    "id": "e013ce15-eada-41c7-ab50-cbb30d28bb54",
+    "name": "生菜",
+    "kcalPer100g": 16,
+    "useCount": 6,
+    "lastUsedAt": "2026-10-08T02:22:32.713Z",
+    "createdAt": "2026-10-08T02:09:24.634Z",
+    "updatedAt": "2026-10-08T02:22:32.713Z"
+  },
+  {
+    "id": "bba042db-bfa7-4a45-bee7-f38b0eeb45b9",
+    "name": "猪肉脯",
+    "kcalPer100g": 380,
+    "useCount": 6,
+    "lastUsedAt": "2026-10-08T02:22:32.713Z",
+    "createdAt": "2026-10-08T02:09:24.634Z",
+    "updatedAt": "2026-10-08T02:22:32.713Z"
+  },
+  {
+    "id": "8466f33b-8871-401c-b082-aec890eade72",
+    "name": "测试燕麦",
+    "kcalPer100g": 380,
+    "useCount": 3,
+    "lastUsedAt": "2026-10-08T02:22:03.206Z",
+    "createdAt": "2026-10-08T02:20:29.888Z",
+    "updatedAt": "2026-10-08T02:22:03.206Z"
+  }
+]

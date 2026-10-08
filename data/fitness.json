@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1c963fa3-5320-4059-b002-daff8c5ec26d",
+    "date": "2026-10-08",
+    "weight": 142.7,
+    "foods": [
+      {
+        "name": "鸡蛋",
+        "grams": 100,
+        "kcal": 144
+      },
+      {
+        "name": "生菜",
+        "grams": 50,
+        "kcal": 8
+      },
+      {
+        "name": "猪肉脯",
+        "grams": 5,
+        "kcal": 19
+      }
+    ],
+    "exerciseMin": 120,
+    "caloriesBurned": 434,
+    "sleepHours": null,
+    "note": "比坐轻轨舒服",
+    "createdAt": "2026-10-08T02:09:24.632Z",
+    "updatedAt": "2026-10-08T02:22:32.712Z"
+  }
+]

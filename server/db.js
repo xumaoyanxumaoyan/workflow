@@ -14,6 +14,8 @@ const FILES = {
   journals: path.join(DATA_DIR, 'journals.json'),
   articles: path.join(DATA_DIR, 'articles.json'),
   memos: path.join(DATA_DIR, 'memos.json'),
+  fitness: path.join(DATA_DIR, 'fitness.json'),
+  freqFoods: path.join(DATA_DIR, 'freq-foods.json'),
   legacy: path.join(DATA_DIR, 'db.json') // 旧版单文件，迁移后仅作备份
 }
 
@@ -230,6 +232,62 @@ export function writeMemos(data) {
   })
 }
 
+/* ---------- 减肥管理模块（独立文件 fitness.json，每日一条记录） ---------- */
+const seedFitness = [
+  {
+    id: 'seed-fit-1',
+    date: '2025-07-10',
+    weight: 145,
+    foods: [
+      { name: '燕麦粥', kcal: 200 },
+      { name: '水煮蛋', kcal: 70 },
+      { name: '鸡胸肉沙拉', kcal: 350 }
+    ],
+    exerciseMin: 45,
+    caloriesBurned: 320,
+    note: '跑步 + 拉伸',
+    createdAt: '2025-07-10T07:30:00.000Z',
+    updatedAt: '2025-07-10T07:30:00.000Z'
+  },
+  {
+    id: 'seed-fit-2',
+    date: '2025-07-11',
+    weight: 144.6,
+    foods: [
+      { name: '全麦面包', kcal: 150 },
+      { name: '牛肉西兰花', kcal: 400 }
+    ],
+    exerciseMin: 30,
+    caloriesBurned: 210,
+    note: '快走 3 公里',
+    createdAt: '2025-07-11T07:30:00.000Z',
+    updatedAt: '2025-07-11T07:30:00.000Z'
+  }
+]
+
+export function readFitness() {
+  return readJsonArray(FILES.fitness, seedFitness)
+}
+
+export function writeFitness(list) {
+  writeJson(FILES.fitness, list)
+}
+
+/* ---------- 常吃食物库（独立文件 freq-foods.json，自动学习每 100g 热量） ---------- */
+const seedFreqFoods = [
+  { id: 'seed-ff-1', name: '鸡胸肉', kcalPer100g: 133, useCount: 2, lastUsedAt: '2025-07-11T08:00:00.000Z', createdAt: '2025-07-10T08:00:00.000Z', updatedAt: '2025-07-11T08:00:00.000Z' },
+  { id: 'seed-ff-2', name: '水煮蛋', kcalPer100g: 144, useCount: 1, lastUsedAt: '2025-07-10T08:00:00.000Z', createdAt: '2025-07-10T08:00:00.000Z', updatedAt: '2025-07-10T08:00:00.000Z' },
+  { id: 'seed-ff-3', name: '米饭', kcalPer100g: 116, useCount: 1, lastUsedAt: '2025-07-10T08:00:00.000Z', createdAt: '2025-07-10T08:00:00.000Z', updatedAt: '2025-07-10T08:00:00.000Z' }
+]
+
+export function readFreqFoods() {
+  return readJsonArray(FILES.freqFoods, seedFreqFoods)
+}
+
+export function writeFreqFoods(list) {
+  writeJson(FILES.freqFoods, list)
+}
+
 export function todoFile(domain) {
   return FILES.todos[domain] || FILES.todos.work
 }
@@ -246,4 +304,6 @@ export function initStorage() {
   readJournals()
   readArticles()
   readMemos()
+  readFitness()
+  readFreqFoods()
 }
