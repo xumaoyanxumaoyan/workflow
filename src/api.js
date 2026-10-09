@@ -84,3 +84,9 @@ export const deleteFitness = (id) => request(`/api/fitness/${id}`, { method: 'DE
 export const listFreqFoods = () => request('/api/freq-foods')
 
 export const deleteFreqFood = (id) => request(`/api/freq-foods/${id}`, { method: 'DELETE' })
+
+/* ---------- 备考打卡 ---------- */
+export const listCheckins = () => request('/api/checkins')
+
+export const toggleCheckin = (date, slot, done) =>
+  request('/api/checkins/toggle', { method: 'POST', body: JSON.stringify({ date, slot, done }) })

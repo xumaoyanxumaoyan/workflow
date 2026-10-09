@@ -9,6 +9,7 @@ import {
   readMemos, writeMemos,
   readFitness, writeFitness,
   readFreqFoods, writeFreqFoods,
+  readCheckins, writeCheckins,
   initStorage
 } from './db.js'
 
@@ -196,7 +197,8 @@ api.get('/export', (_req, res) => {
     articles: readArticles(),
     memos: readMemos(),
     fitness: readFitness(),
-    freqFoods: readFreqFoods()
+    freqFoods: readFreqFoods(),
+    checkins: readCheckins()
   }
   res.setHeader('Content-Type', 'application/json; charset=utf-8')
   res.setHeader('Content-Disposition', 'attachment; filename="todo-workbench-export.json"')
@@ -339,6 +341,18 @@ api.post('/import', (req, res) => {
     )
     writeFreqFoods(clean)
     count += clean.length
+  }
+  if (body?.checkins && typeof body.checkins === 'object' && !Array.isArray(body.checkins)) {
+    const clean = {}
+    for (const [date, day] of Object.entries(body.checkins)) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !day || typeof day !== 'object') continue
+      const cleanDay = {}
+      if (day.am) cleanDay.am = { done: !!day.am.done, updatedAt: day.am.updatedAt || new Date().toISOString() }
+      if (day.pm) cleanDay.pm = { done: !!day.pm.done, updatedAt: day.pm.updatedAt || new Date().toISOString() }
+      if (cleanDay.am || cleanDay.pm) clean[date] = cleanDay
+    }
+    writeCheckins(clean)
+    count += Object.keys(clean).length
   }
   res.json({ code: 0, data: { count } })
 })
@@ -568,6 +582,25 @@ api.delete('/freq-foods/:id', (req, res) => {
   const before = list.length
   writeFreqFoods(list.filter((f) => f.id !== req.params.id))
   res.json({ code: 0, data: { removed: before - list.length } })
+})
+
+/* ================= 备考打卡（checkins.json） ================= */
+
+api.get('/checkins', (_req, res) => {
+  res.json({ code: 0, data: readCheckins() })
+})
+
+// 打卡切换：{ date, slot: 'am' | 'pm', done }
+api.post('/checkins/toggle', (req, res) => {
+  const date = /^\d{4}-\d{2}-\d{2}$/.test(String(req.body?.date || '')) ? String(req.body.date) : null
+  const slot = req.body?.slot === 'am' || req.body?.slot === 'pm' ? req.body.slot : null
+  if (!date || !slot) return res.status(400).json({ code: 1, message: '参数不正确' })
+  const data = readCheckins()
+  const day = data[date] || {}
+  day[slot] = { done: !!req.body?.done, updatedAt: new Date().toISOString() }
+  data[date] = day
+  writeCheckins(data)
+  res.json({ code: 0, data: { date, slot, done: !!req.body?.done } })
 })
 
 app.use('/api', api)

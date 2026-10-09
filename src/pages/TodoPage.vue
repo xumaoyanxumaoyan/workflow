@@ -269,7 +269,7 @@ const columns = [
   { colKey: 'createdAt', title: '创建时间', cell: 'created-cell', width: 150 },
   { colKey: 'completedAt', title: '完成时间', cell: 'completed-cell', width: 150 },
   { colKey: 'tags', title: '标签', cell: 'tags-cell', minWidth: 120 },
-  { colKey: 'op', title: '操作', cell: 'op-cell', width: 120 }
+  { colKey: 'op', title: '操作', cell: 'op-cell', width: 120, fixed: 'right' }
 ]
 
 function onSelectChange(val) {

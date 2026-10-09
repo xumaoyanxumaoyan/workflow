@@ -174,7 +174,7 @@ const columns = [
   { colKey: 'content', title: '日志', cell: 'content-cell', minWidth: 320 },
   { colKey: 'mood', title: '心情', cell: 'mood-cell', width: 100 },
   { colKey: 'tags', title: '标签', cell: 'tags-cell', minWidth: 120 },
-  { colKey: 'op', title: '操作', cell: 'op-cell', width: 120 }
+  { colKey: 'op', title: '操作', cell: 'op-cell', width: 120, fixed: 'right' }
 ]
 
 /* ---------- 增删改 ---------- */

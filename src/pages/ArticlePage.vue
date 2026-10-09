@@ -7,17 +7,11 @@
         <template #icon><add-icon /></template>新建文章
       </t-button>
     </div>
-
     <div class="wb-article-layout">
       <!-- 左侧：文章列表 -->
       <aside class="wb-article-list">
-        <div
-          v-for="a in articles"
-          :key="a.id"
-          class="wb-article-item"
-          :class="{ active: a.id === currentId }"
-          @click="selectArticle(a)"
-        >
+        <div v-for="a in articles" :key="a.id" class="wb-article-item" :class="{ active: a.id === currentId }"
+          @click="selectArticle(a)">
           <div class="wb-article-item-title">{{ a.title || '（无标题）' }}</div>
           <div class="wb-article-item-meta">
             <span>{{ fmtDateTime(a.updatedAt) }}</span>
@@ -34,25 +28,11 @@
       <!-- 右侧：页内编辑器（非弹框） -->
       <section class="wb-editor-card">
         <template v-if="current">
-          <t-input
-            v-model="current.title"
-            placeholder="文章标题"
-            size="large"
-            borderless
-            class="wb-editor-title"
-            @input="queueSave"
-          />
-          <textarea
-            ref="editorRef"
-            v-model="current.content"
-            class="wb-editor"
-            placeholder="开始写作…（自动保存）"
-            spellcheck="false"
-            @input="queueSave"
-            @select="updateSelection"
-            @keyup="updateSelection"
-            @mouseup="updateSelection"
-          ></textarea>
+          <t-input v-model="current.title" placeholder="文章标题" size="large" borderless class="wb-editor-title"
+            @input="queueSave" />
+          <textarea ref="editorRef" v-model="current.content" class="wb-editor" placeholder="开始写作…（自动保存）"
+            spellcheck="false" @input="queueSave" @select="updateSelection" @keyup="updateSelection"
+            @mouseup="updateSelection"></textarea>
           <div class="wb-editor-status">
             <span>全文 {{ totalChars }} 字</span>
             <span v-if="selectedChars > 0" class="wb-editor-selected">已选中 {{ selectedChars }} 字</span>
@@ -179,5 +159,7 @@ function updateSelection(e) {
   }
 }
 
-onBeforeUnmount(() => clearTimeout(saveTimer))
+onBeforeUnmount(() => {
+  clearTimeout(saveTimer)
+})
 </script>

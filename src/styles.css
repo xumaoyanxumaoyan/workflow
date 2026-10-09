@@ -25,8 +25,44 @@ body {
 }
 
 .wb-header-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   font-size: 13px;
   color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+}
+
+.wb-exam-shortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 14px;
+  border: 1px solid var(--td-brand-color, #0052d9);
+  border-radius: 999px;
+  background: var(--td-brand-color-light, #ecf2fe);
+  color: var(--td-brand-color, #0052d9);
+  font-size: 13px;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.1s;
+}
+
+.wb-exam-shortcut:hover {
+  box-shadow: 0 2px 10px rgba(0, 82, 217, 0.25);
+}
+
+.wb-exam-shortcut:active {
+  transform: scale(0.97);
+}
+
+.wb-exam-shortcut .days {
+  font-size: 15px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.wb-exam-shortcut .mono {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
 }
 
 /* 侧边导航区域 */
@@ -218,6 +254,220 @@ body {
 }
 
 /* 写文章：左列表 + 右编辑器 */
+.wb-exam-cards {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.wb-exam-countdown {
+  background: linear-gradient(135deg, #0052d9, #00c8ff);
+  border-radius: 10px;
+  padding: 18px 24px;
+  color: #fff;
+}
+
+.wb-exam-countdown-title {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.wb-exam-countdown-value {
+  margin-top: 6px;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.wb-exam-countdown-value .num {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
+
+.wb-exam-countdown-value .unit {
+  font-size: 13px;
+  margin-right: 8px;
+  opacity: 0.85;
+}
+
+.wb-exam-date {
+  margin-top: 6px;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.wb-exam-schedule {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+
+.wb-exam-schedule-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+  margin-bottom: 10px;
+}
+
+.wb-exam-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 0;
+  font-size: 14px;
+}
+
+.wb-exam-row .when {
+  flex-shrink: 0;
+  width: 40px;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+}
+
+.wb-exam-row .time {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--td-brand-color, #0052d9);
+}
+
+.wb-exam-row .what {
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
+}
+
+/* 16 天学习打卡 */
+.wb-checkin-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+
+.wb-checkin-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.wb-checkin-head .title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
+}
+
+.wb-checkin-head .legend {
+  font-size: 12px;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+  flex: 1;
+}
+
+.wb-checkin-head .progress {
+  font-size: 13px;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+  font-variant-numeric: tabular-nums;
+}
+
+.wb-checkin-head .progress b {
+  color: var(--td-success-color, #2ba471);
+  font-size: 16px;
+}
+
+.wb-checkin-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 8px;
+}
+
+.wb-checkin-day {
+  border: 1px solid var(--td-component-stroke, #e7e7e7);
+  border-radius: 8px;
+  padding: 8px 6px;
+  text-align: center;
+}
+
+.wb-checkin-day.today {
+  border-color: var(--td-brand-color, #0052d9);
+  background: var(--td-brand-color-light, #ecf2fe);
+}
+
+.wb-checkin-day .date {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
+  margin-bottom: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.wb-checkin-day.today .date {
+  color: var(--td-brand-color, #0052d9);
+}
+
+.wb-checkin-day .tag {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 0 4px;
+  border-radius: 4px;
+  background: var(--td-brand-color, #0052d9);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.wb-checkin-day .slots {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.wb-checkin-day .slot {
+  border: 1px solid var(--td-component-stroke, #e7e7e7);
+  background: #fff;
+  border-radius: 5px;
+  padding: 3px 0;
+  font-size: 12px;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  font-family: inherit;
+}
+
+.wb-checkin-day .slot:hover {
+  border-color: var(--td-brand-color, #0052d9);
+  color: var(--td-brand-color, #0052d9);
+}
+
+.wb-checkin-day .slot.done {
+  background: var(--td-success-color, #2ba471);
+  border-color: var(--td-success-color, #2ba471);
+  color: #fff;
+  font-weight: 600;
+}
+
+.wb-checkin-day .slot.done::after {
+  content: ' ✓';
+}
+
+.wb-checkin-day.exam-day {
+  border-style: dashed;
+  background: #fffbe6;
+}
+
+.wb-checkin-day.exam-day .examLabel {
+  font-size: 12px;
+  color: #d48806;
+  font-weight: 600;
+  padding: 4px 0;
+}
+
+@media (max-width: 860px) {
+  .wb-exam-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
 .wb-article-layout {
   display: flex;
   gap: 16px;
@@ -487,7 +737,8 @@ body {
   user-select: none;
 }
 
-.wb-freq-chip:hover {
+/* 普通食物：悬停变蓝；高热量红底标签悬停不变色（保持白字） */
+.wb-freq-chip:not(.t-tag--danger):hover {
   color: var(--td-brand-color, #0052d9);
   border-color: var(--td-brand-color, #0052d9);
 }
@@ -499,6 +750,24 @@ body {
   padding: 0 2px;
   color: var(--td-text-color-placeholder, rgba(0, 0, 0, 0.4));
   font-weight: 400;
+}
+
+.wb-freq-chip.t-tag--danger .wb-freq-x {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.wb-freq-chip.t-tag--danger .wb-freq-x:hover {
+  color: #fff;
+}
+
+/* 减肥表格：晨重单元格里的小号备注标签 */
+.t-tag.wb-note-tag {
+  font-size: 11px;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
 }
 
 .wb-freq-x:hover {

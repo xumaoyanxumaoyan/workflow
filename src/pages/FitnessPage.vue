@@ -52,7 +52,8 @@
             <t-tag
               v-for="f in freqFoods"
               :key="f.id"
-              variant="light"
+              :variant="f.kcalPer100g > 300 ? 'dark' : 'light'"
+              :theme="f.kcalPer100g > 300 ? 'danger' : 'default'"
               class="wb-freq-chip"
             >
               <span @click="addFreqFood(f)">{{ f.name }} · {{ f.kcalPer100g }} 千卡/100g</span>
@@ -109,6 +110,11 @@
               {{ deltaOf(row) > 0 ? '+' : '' }}{{ deltaOf(row) }} 斤
             </t-tag>
           </span>
+          <div v-if="row.note" style="margin-top: 4px">
+            <t-tag size="small" variant="light" class="wb-note-tag" :title="row.note">
+              {{ row.note }}
+            </t-tag>
+          </div>
         </template>
 
         <template #foods-cell="{ row }">
@@ -415,6 +421,6 @@ const columns = [
   { colKey: 'sleepHours', title: '睡眠', cell: 'sleep-cell', width: 90 },
   { colKey: 'caloriesBurned', title: '运动消耗', cell: 'burned-cell', width: 110 },
   { colKey: 'rate', title: '单位时间运动消耗', cell: 'rate-cell', width: 170 },
-  { colKey: 'op', title: '操作', cell: 'op-cell', width: 110 }
+  { colKey: 'op', title: '操作', cell: 'op-cell', width: 110, fixed: 'right' }
 ]
 </script>

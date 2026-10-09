@@ -323,6 +323,6 @@ const columns = [
   { colKey: 'title', title: '站点', cell: 'title-cell', minWidth: 240 },
   { colKey: 'folderId', title: '文件夹', cell: 'folder-cell', width: 120 },
   { colKey: 'updatedAt', title: '更新时间', cell: 'updated-cell', width: 150 },
-  { colKey: 'op', title: '操作', cell: 'op-cell', width: 120 }
+  { colKey: 'op', title: '操作', cell: 'op-cell', width: 120, fixed: 'right' }
 ]
 </script>

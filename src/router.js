@@ -20,6 +20,12 @@ const routes = [
         meta: { title: '写日志' }
       },
       {
+        path: 'SA',
+        name: 'sa',
+        component: () => import('./pages/SaPage.vue'),
+        meta: { title: '系统架构师备考' }
+      },
+      {
         path: 'article',
         name: 'article',
         component: () => import('./pages/ArticlePage.vue'),

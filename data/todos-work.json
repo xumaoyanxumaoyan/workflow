@@ -118,5 +118,77 @@
     "createdAt": "2026-09-23T08:18:48.758Z",
     "updatedAt": "2026-09-23T09:24:12.333Z",
     "completedAt": "2026-09-23T09:24:12.333Z"
+  },
+  {
+    "id": "77ccc7eb-0b5e-44da-bf3f-47bb5ba3a76c",
+    "title": "一键复制UI优化",
+    "desc": "去多余时间、加详情按钮、去掉通知转到home页面、Waregoods-Detail底部需要留白、被复制商品title下划线过长的问题",
+    "priority": "medium",
+    "status": "done",
+    "dueDate": "2026-10-10",
+    "tags": [],
+    "createdAt": "2026-10-08T02:49:44.924Z",
+    "updatedAt": "2026-10-08T09:08:23.313Z",
+    "completedAt": "2026-10-08T08:16:20.807Z"
+  },
+  {
+    "id": "8d1ecca9-da68-4baa-b79b-dd2f7f98bb5d",
+    "title": "优化按钮新增多个平台透出",
+    "desc": "",
+    "priority": "medium",
+    "status": "doing",
+    "dueDate": "2026-10-17",
+    "tags": [],
+    "createdAt": "2026-10-08T02:49:55.893Z",
+    "updatedAt": "2026-10-08T09:07:38.527Z",
+    "completedAt": null
+  },
+  {
+    "id": "94e3b36b-e9f3-4a09-b103-577b1f78ce83",
+    "title": "一键复制 UI已知问题调整",
+    "desc": "Ware模块 左侧多余线条、处理表格线条",
+    "priority": "medium",
+    "status": "done",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-10-08T08:16:57.856Z",
+    "updatedAt": "2026-10-09T03:16:29.685Z",
+    "completedAt": "2026-10-09T03:16:29.685Z"
+  },
+  {
+    "id": "265a39a6-9522-41c0-800a-b9bf7f2cc3e9",
+    "title": "浏览器百分比放大缩小，表格头会磁吸在顶部（必现UI问题）",
+    "desc": "",
+    "priority": "medium",
+    "status": "todo",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-10-09T03:24:52.058Z",
+    "updatedAt": "2026-10-09T03:24:52.058Z",
+    "completedAt": null
+  },
+  {
+    "id": "7f31ef7f-14fa-4b18-930f-572aedcd243b",
+    "title": "复制记录管理-查询功能会遮挡和对齐的UI问题",
+    "desc": "",
+    "priority": "medium",
+    "status": "done",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-10-09T03:25:21.125Z",
+    "updatedAt": "2026-10-09T07:14:29.689Z",
+    "completedAt": "2026-10-09T07:14:29.689Z"
+  },
+  {
+    "id": "55c74b5b-0208-4588-a413-3364632f93ba",
+    "title": "ace主题下，Framework 面包屑只含两极的UI问题",
+    "desc": "",
+    "priority": "medium",
+    "status": "todo",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-10-09T03:25:40.990Z",
+    "updatedAt": "2026-10-09T03:25:40.990Z",
+    "completedAt": null
   }
 ]
