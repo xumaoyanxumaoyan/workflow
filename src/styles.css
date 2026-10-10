@@ -125,15 +125,12 @@ body {
 }
 
 .wb-title .logo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   width: 34px;
   height: 34px;
   border-radius: 10px;
-  color: #fff;
-  font-size: 18px;
-  background: linear-gradient(135deg, #0052d9, #7b61ff);
+  object-fit: contain;
+  box-shadow: 0 2px 8px rgba(0, 82, 217, 0.25);
 }
 
 .wb-content {

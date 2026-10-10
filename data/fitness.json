@@ -74,5 +74,55 @@
     "note": "好饿好饿好饿我真的好饿《投食歌》",
     "createdAt": "2026-10-09T03:29:12.603Z",
     "updatedAt": "2026-10-09T07:10:48.562Z"
+  },
+  {
+    "id": "47b053e0-77e0-466d-87dd-18ca9d8637a8",
+    "date": "2026-10-10",
+    "weight": 139.7,
+    "foods": [
+      {
+        "name": "鸡蛋",
+        "grams": 50,
+        "kcal": 72
+      },
+      {
+        "name": "小番茄",
+        "grams": 200,
+        "kcal": 36
+      },
+      {
+        "name": "生菜",
+        "grams": 50,
+        "kcal": 8
+      },
+      {
+        "name": "猪肉脯",
+        "grams": 5,
+        "kcal": 19
+      },
+      {
+        "name": "真全麦吐司（光明）",
+        "grams": 35,
+        "kcal": 91
+      }
+    ],
+    "exerciseMin": 10,
+    "caloriesBurned": 60,
+    "sleepHours": 6.5,
+    "note": "又买50块钱的低卡",
+    "createdAt": "2026-10-10T01:02:08.833Z",
+    "updatedAt": "2026-10-10T01:02:08.833Z"
+  },
+  {
+    "id": "6e841562-3854-4382-b921-3d16d46f7439",
+    "date": "2026-10-07",
+    "weight": 144.3,
+    "foods": [],
+    "exerciseMin": null,
+    "caloriesBurned": null,
+    "sleepHours": null,
+    "note": "坐完车水肿",
+    "createdAt": "2026-10-10T01:02:51.670Z",
+    "updatedAt": "2026-10-10T01:02:51.670Z"
   }
 ]

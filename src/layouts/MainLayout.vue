@@ -3,7 +3,7 @@
     <!-- 头部 -->
     <t-header class="wb-header">
       <div class="wb-title">
-        <span class="logo">✓</span>
+        <img class="logo" src="/favicon.ico" alt="Z 工作台" />
         工作台
         <t-tag size="small" variant="light-outline">个人版</t-tag>
       </div>
