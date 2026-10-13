@@ -160,12 +160,12 @@
     "title": "浏览器百分比放大缩小，表格头会磁吸在顶部（必现UI问题）",
     "desc": "",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-09T03:24:52.058Z",
-    "updatedAt": "2026-10-09T03:24:52.058Z",
-    "completedAt": null
+    "updatedAt": "2026-10-13T06:39:40.306Z",
+    "completedAt": "2026-10-13T06:39:40.306Z"
   },
   {
     "id": "7f31ef7f-14fa-4b18-930f-572aedcd243b",
@@ -208,12 +208,12 @@
     "title": "’修改商品‘的一些UXbug 用AI重写一遍",
     "desc": "没有loading的bug、拖动交换图片顺序的bug",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-09T08:53:36.482Z",
-    "updatedAt": "2026-10-09T08:59:24.317Z",
-    "completedAt": null
+    "updatedAt": "2026-10-12T07:36:29.267Z",
+    "completedAt": "2026-10-12T07:36:29.267Z"
   },
   {
     "id": "f961fd50-e5be-43dc-8a8c-f911eb235418",
@@ -244,12 +244,12 @@
     "title": "修改商品jdwap 第一次保存没有调用后端接口",
     "desc": "",
     "priority": "high",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-10T06:43:22.786Z",
-    "updatedAt": "2026-10-10T06:43:28.796Z",
-    "completedAt": null
+    "updatedAt": "2026-10-12T06:42:52.211Z",
+    "completedAt": "2026-10-12T06:42:52.211Z"
   },
   {
     "id": "038edf06-41c9-4fdb-aa82-774364d2801d",
@@ -286,5 +286,41 @@
     "createdAt": "2026-10-10T07:12:34.324Z",
     "updatedAt": "2026-10-10T07:12:35.976Z",
     "completedAt": "2026-10-10T07:12:35.976Z"
+  },
+  {
+    "id": "d15313de-8ba8-4b17-a7c9-255e2f241584",
+    "title": "尺码表三个项目的样式问题",
+    "desc": "",
+    "priority": "medium",
+    "status": "done",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-10-13T03:45:19.083Z",
+    "updatedAt": "2026-10-13T03:45:19.083Z",
+    "completedAt": "2026-10-13T03:45:19.083Z"
+  },
+  {
+    "id": "c179cd8f-85a8-49c6-9820-c6def7756730",
+    "title": "Ace主题下 按钮一个大一个小的问题+表格线条的问题",
+    "desc": "",
+    "priority": "medium",
+    "status": "done",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-10-13T03:52:18.680Z",
+    "updatedAt": "2026-10-13T07:29:39.464Z",
+    "completedAt": "2026-10-13T06:34:44.353Z"
+  },
+  {
+    "id": "c21e689d-9ff7-4b4c-91c0-621b31248800",
+    "title": "snatchCps侧-复制记录管理",
+    "desc": "tag被遮挡、详情页面实现、页面布局优化",
+    "priority": "medium",
+    "status": "todo",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-10-13T07:29:09.085Z",
+    "updatedAt": "2026-10-13T07:29:09.085Z",
+    "completedAt": null
   }
 ]

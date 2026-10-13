@@ -3,19 +3,19 @@
     "id": "d3882c58-1b8f-4e43-985a-8393d9d725b8",
     "name": "鸡蛋",
     "kcalPer100g": 144,
-    "useCount": 17,
-    "lastUsedAt": "2026-10-10T01:02:08.834Z",
+    "useCount": 22,
+    "lastUsedAt": "2026-10-12T07:28:15.839Z",
     "createdAt": "2026-10-08T02:09:24.634Z",
-    "updatedAt": "2026-10-10T01:02:08.834Z"
+    "updatedAt": "2026-10-12T07:28:15.839Z"
   },
   {
     "id": "e013ce15-eada-41c7-ab50-cbb30d28bb54",
     "name": "生菜",
     "kcalPer100g": 16,
-    "useCount": 17,
-    "lastUsedAt": "2026-10-10T01:02:08.834Z",
+    "useCount": 22,
+    "lastUsedAt": "2026-10-12T07:28:15.839Z",
     "createdAt": "2026-10-08T02:09:24.634Z",
-    "updatedAt": "2026-10-10T01:02:08.834Z"
+    "updatedAt": "2026-10-12T07:28:15.839Z"
   },
   {
     "id": "bba042db-bfa7-4a45-bee7-f38b0eeb45b9",
@@ -30,10 +30,10 @@
     "id": "fdbd492c-cb11-4111-bef5-710df5c0da16",
     "name": "真全麦吐司（光明）",
     "kcalPer100g": 260,
-    "useCount": 8,
-    "lastUsedAt": "2026-10-10T01:02:08.834Z",
+    "useCount": 11,
+    "lastUsedAt": "2026-10-13T01:05:22.069Z",
     "createdAt": "2026-10-08T02:44:41.328Z",
-    "updatedAt": "2026-10-10T01:02:08.834Z"
+    "updatedAt": "2026-10-13T01:05:22.069Z"
   },
   {
     "id": "ea3131b4-1101-4e27-a67a-aa3b7e620bdb",
@@ -48,10 +48,10 @@
     "id": "a6010d7f-b55c-4c23-af94-e663f4936018",
     "name": "一盒牛奶",
     "kcalPer100g": 54,
-    "useCount": 5,
-    "lastUsedAt": "2026-10-09T05:17:47.331Z",
+    "useCount": 9,
+    "lastUsedAt": "2026-10-13T01:05:22.069Z",
     "createdAt": "2026-10-09T03:31:09.306Z",
-    "updatedAt": "2026-10-09T05:17:47.331Z"
+    "updatedAt": "2026-10-13T01:05:22.069Z"
   },
   {
     "id": "727942cb-90eb-44f9-8f48-37d1585bca5d",
@@ -75,10 +75,10 @@
     "id": "978c9823-4bab-4290-9cde-3a28c5d27d5d",
     "name": "黄瓜",
     "kcalPer100g": 15,
-    "useCount": 3,
-    "lastUsedAt": "2026-10-09T07:10:48.563Z",
+    "useCount": 8,
+    "lastUsedAt": "2026-10-12T07:28:15.839Z",
     "createdAt": "2026-10-09T05:20:24.730Z",
-    "updatedAt": "2026-10-09T07:10:48.563Z"
+    "updatedAt": "2026-10-12T07:28:15.839Z"
   },
   {
     "id": "0b5fe01c-b94d-45e0-9fd6-bd243fc86e5c",
@@ -88,5 +88,41 @@
     "lastUsedAt": "2026-10-09T07:10:48.563Z",
     "createdAt": "2026-10-09T05:20:24.730Z",
     "updatedAt": "2026-10-09T07:10:48.563Z"
+  },
+  {
+    "id": "4e4908d8-e8f2-477f-9a9a-b2b953514346",
+    "name": "嫩豆腐",
+    "kcalPer100g": 58,
+    "useCount": 5,
+    "lastUsedAt": "2026-10-12T07:28:15.839Z",
+    "createdAt": "2026-10-12T07:26:22.647Z",
+    "updatedAt": "2026-10-12T07:28:15.839Z"
+  },
+  {
+    "id": "a572131d-3c72-47a3-8fb5-3b9788c72a26",
+    "name": "薯片",
+    "kcalPer100g": 385,
+    "useCount": 5,
+    "lastUsedAt": "2026-10-12T07:28:15.839Z",
+    "createdAt": "2026-10-12T07:26:22.647Z",
+    "updatedAt": "2026-10-12T07:28:15.839Z"
+  },
+  {
+    "id": "0d3c203e-6af0-465b-b48b-d5544b5132e4",
+    "name": "辣条",
+    "kcalPer100g": 340,
+    "useCount": 5,
+    "lastUsedAt": "2026-10-12T07:28:15.839Z",
+    "createdAt": "2026-10-12T07:26:22.647Z",
+    "updatedAt": "2026-10-12T07:28:15.839Z"
+  },
+  {
+    "id": "4527e76c-7a4a-4649-a33f-1428aa1465cd",
+    "name": "酸梅",
+    "kcalPer100g": 330,
+    "useCount": 5,
+    "lastUsedAt": "2026-10-12T07:28:15.839Z",
+    "createdAt": "2026-10-12T07:26:22.647Z",
+    "updatedAt": "2026-10-12T07:28:15.839Z"
   }
 ]
