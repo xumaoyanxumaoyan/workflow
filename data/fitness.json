@@ -217,5 +217,35 @@
     "note": "昨天零食吃了5包",
     "createdAt": "2026-10-13T01:03:39.393Z",
     "updatedAt": "2026-10-13T01:05:22.068Z"
+  },
+  {
+    "id": "2f26e1fd-c7da-4106-b052-5bab99573b1f",
+    "date": "2026-10-14",
+    "weight": 139.8,
+    "foods": [],
+    "exerciseMin": null,
+    "caloriesBurned": null,
+    "sleepHours": null,
+    "note": "清淡之后不焦躁了",
+    "createdAt": "2026-10-14T01:43:50.512Z",
+    "updatedAt": "2026-10-14T07:15:41.044Z"
+  },
+  {
+    "id": "4c3ada13-4bbf-487c-946c-5e0c2e4a4e78",
+    "date": "2026-10-15",
+    "weight": 138.5,
+    "foods": [
+      {
+        "name": "鸡胸肉",
+        "grams": 0,
+        "kcal": 300
+      }
+    ],
+    "exerciseMin": 40,
+    "caloriesBurned": 280,
+    "sleepHours": null,
+    "note": "",
+    "createdAt": "2026-10-15T02:39:36.348Z",
+    "updatedAt": "2026-10-15T06:06:41.602Z"
   }
 ]

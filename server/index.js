@@ -15,7 +15,7 @@ import {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3101
 
 app.use(express.json({ limit: '10mb' }))
 
@@ -28,6 +28,11 @@ app.use((req, _res, next) => {
 initStorage()
 
 const api = express.Router()
+
+// 健康检查：前端据此判断后端是否可达
+api.get('/health', (_req, res) => {
+  res.json({ code: 0, data: 'ok' })
+})
 
 /* ================= 待办（按领域 work / life 分文件存储） ================= */
 

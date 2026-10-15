@@ -11,6 +11,50 @@
     <!-- 统计卡片 -->
     <StatsCards :cards="statCards" />
 
+    <!-- 3D 人形预览 -->
+    <div class="wb-avatar-card">
+      <div class="wb-avatar-canvas" ref="avatarContainerRef"></div>
+      <div class="wb-avatar-params">
+        <div class="wb-avatar-title">3D 身形预览</div>
+        <div class="wb-avatar-hint">拖动旋转 · 滚轮缩放 · 参数即时生效</div>
+        <t-form label-width="64px" @submit.prevent>
+          <t-form-item label="身高">
+            <t-input-number v-model="avatarForm.heightCm" :min="120" :max="210" :step="1" :decimal-places="0" theme="normal" style="width: 130px" />
+            <span class="wb-avatar-unit">cm</span>
+          </t-form-item>
+          <t-form-item label="体重">
+            <t-input-number v-model="avatarForm.weightKg" :min="20" :max="250" :step="0.1" :decimal-places="1" theme="normal" style="width: 130px" />
+            <span class="wb-avatar-unit">kg</span>
+          </t-form-item>
+          <t-form-item label="胸围">
+            <t-input-number v-model="avatarForm.bust" :min="50" :max="170" :step="1" :decimal-places="0" theme="normal" style="width: 130px" />
+            <span class="wb-avatar-unit">cm</span>
+          </t-form-item>
+          <t-form-item label="腰围">
+            <t-input-number v-model="avatarForm.waist" :min="40" :max="170" :step="1" :decimal-places="0" theme="normal" style="width: 130px" />
+            <span class="wb-avatar-unit">cm</span>
+          </t-form-item>
+          <t-form-item label="臀围">
+            <t-input-number v-model="avatarForm.hips" :min="50" :max="170" :step="1" :decimal-places="0" theme="normal" style="width: 130px" />
+            <span class="wb-avatar-unit">cm</span>
+          </t-form-item>
+        </t-form>
+        <div class="wb-avatar-bmi">
+          BMI
+          <t-tag :theme="bmiInfo.theme" variant="light" size="default" style="font-size: 16px; font-weight: 700">
+            {{ bmiInfo.value }}
+          </t-tag>
+          <span class="wb-avatar-bmi-label">{{ bmiInfo.label }}</span>
+        </div>
+        <div class="wb-avatar-actions">
+          <t-button variant="outline" size="small" @click="resetAvatar">恢复标准三维</t-button>
+        </div>
+        <div class="wb-avatar-note">
+          基于 GLB 女性人体原型渲染：身高整体缩放，体重（联动打卡记录）与腰围控制横向体脂感；标准三维为 158cm 参考（88 / 68 / 93）
+        </div>
+      </div>
+    </div>
+
     <!-- 每日记录表单 -->
     <div class="wb-fitness-form" :class="{ 'wb-fitness-editing': editingId }">
       <div v-if="editingId" class="wb-fitness-banner">
@@ -167,11 +211,12 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { MessagePlugin } from 'tdesign-vue-next'
 import { AddIcon, AddRectangleIcon, DeleteIcon, HeartIcon, RocketIcon, ThunderIcon, ChartIcon, TimeIcon } from 'tdesign-icons-vue-next'
 import * as api from '../api'
 import { fmtDate } from '../utils/date'
+import { createAvatarScene } from '../utils/avatar3d'
 import StatsCards from '../components/StatsCards.vue'
 
 /* ---------- 数据 ---------- */
@@ -199,6 +244,19 @@ const emptyForm = () => ({
 })
 const form = ref(emptyForm())
 
+// 3D 人形：体重默认取最新记录的斤数换算成 kg（斤 ÷ 2）
+watch(
+  records,
+  () => {
+    const asc = [...records.value].filter((r) => r.weight != null).sort((a, b) => (a.date || '').localeCompare(b.date || ''))
+    const latest = asc[asc.length - 1]
+    if (latest && avatarForm.value.weightKg == null) {
+      avatarForm.value.weightKg = Math.round((latest.weight / 2) * 10) / 10
+    }
+  },
+  { deep: true }
+)
+
 async function load() {
   loading.value = true
   try {
@@ -218,9 +276,67 @@ async function loadFreqFoods() {
       .slice(0, 10)
   } catch { /* 常吃库加载失败不影响主流程 */ }
 }
+/* ---------- 3D 人形 ---------- */
+const avatarContainerRef = ref(null)
+let avatarScene = null
+let avatarDebounce = null
+
+const AVATAR_DEFAULTS = {
+  heightCm: 158,
+  bust: 88,
+  waist: 68,
+  hips: 93
+}
+const avatarForm = ref({
+  heightCm: 158,
+  weightKg: null, // 由最新记录的斤数换算（斤 ÷ 2）
+  ...AVATAR_DEFAULTS
+})
+
+const bmiInfo = computed(() => {
+  const h = avatarForm.value.heightCm / 100
+  const w = avatarForm.value.weightKg
+  if (!h || !w) return { value: '—', label: '', theme: 'default' }
+  const bmi = Math.round((w / (h * h)) * 100) / 100
+  let label = '正常'
+  let theme = 'success'
+  if (bmi < 18.5) { label = '偏瘦'; theme = 'primary' }
+  else if (bmi >= 24 && bmi < 28) { label = '超重'; theme = 'warning' }
+  else if (bmi >= 28) { label = '肥胖'; theme = 'danger' }
+  return { value: bmi, label, theme }
+})
+
+function resetAvatar() {
+  avatarForm.value = { heightCm: 158, weightKg: avatarForm.value.weightKg, ...AVATAR_DEFAULTS }
+  MessagePlugin.info('已恢复标准三维')
+}
+
+watch(
+  avatarForm,
+  () => {
+    if (!avatarScene) return
+    const f = avatarForm.value
+    if (!f.heightCm || !f.weightKg) return
+    clearTimeout(avatarDebounce)
+    avatarDebounce = setTimeout(() => {
+      avatarScene.rebuild({ ...f })
+    }, 180)
+  },
+  { deep: true }
+)
+
 onMounted(() => {
   load()
   loadFreqFoods()
+  // 初始化 3D 场景（等记录加载出体重后再首次重建，见 watch）
+  if (avatarContainerRef.value) {
+    avatarScene = createAvatarScene(avatarContainerRef.value)
+  }
+})
+
+onBeforeUnmount(() => {
+  avatarScene?.dispose()
+  avatarScene = null
 })
 
 // 日期变化时：若该日期已有记录，自动载入原内容（避免空表单覆盖已有数据；同日追加饮食/运动时直接带着旧数据改）
