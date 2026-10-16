@@ -241,11 +241,23 @@
         "kcal": 300
       }
     ],
-    "exerciseMin": 40,
-    "caloriesBurned": 280,
+    "exerciseMin": 180,
+    "caloriesBurned": 900,
     "sleepHours": null,
     "note": "",
     "createdAt": "2026-10-15T02:39:36.348Z",
-    "updatedAt": "2026-10-15T06:06:41.602Z"
+    "updatedAt": "2026-10-16T03:05:28.979Z"
+  },
+  {
+    "id": "43e45b7c-7c0f-4692-85b8-1212c0f7e4ea",
+    "date": "2026-10-16",
+    "weight": 138.2,
+    "foods": [],
+    "exerciseMin": null,
+    "caloriesBurned": null,
+    "sleepHours": null,
+    "note": "",
+    "createdAt": "2026-10-16T03:05:07.658Z",
+    "updatedAt": "2026-10-16T03:05:07.658Z"
   }
 ]

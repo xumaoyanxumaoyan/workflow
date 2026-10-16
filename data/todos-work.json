@@ -48,18 +48,6 @@
     "completedAt": "2026-09-21T10:01:24.028Z"
   },
   {
-    "id": "c9de886b-19c1-4aa1-9906-6f3e5be8cec2",
-    "title": "解决bug",
-    "desc": "Snatch和SnatchCps 复制记录轮询存在bug",
-    "priority": "medium",
-    "status": "todo",
-    "dueDate": "",
-    "tags": [],
-    "createdAt": "2026-09-21T08:10:25.465Z",
-    "updatedAt": "2026-09-21T08:10:25.465Z",
-    "completedAt": null
-  },
-  {
     "id": "5b3e45f0-104a-4c4f-bcb7-ede328ba5c5b",
     "title": "Wuyou.Refine",
     "desc": "实现短视频的限制",
@@ -136,12 +124,12 @@
     "title": "优化按钮新增多个平台透出",
     "desc": "",
     "priority": "medium",
-    "status": "doing",
+    "status": "done",
     "dueDate": "2026-10-17",
     "tags": [],
     "createdAt": "2026-10-08T02:49:55.893Z",
-    "updatedAt": "2026-10-08T09:07:38.527Z",
-    "completedAt": null
+    "updatedAt": "2026-10-16T08:16:12.000Z",
+    "completedAt": "2026-10-16T08:16:12.000Z"
   },
   {
     "id": "94e3b36b-e9f3-4a09-b103-577b1f78ce83",
@@ -184,24 +172,24 @@
     "title": "ace主题下，只显示 首页 > 当前选中子项，不再显示顶层菜单名",
     "desc": "要能点击跳转",
     "priority": "medium",
-    "status": "doing",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-09T03:25:40.990Z",
-    "updatedAt": "2026-10-10T05:16:53.182Z",
-    "completedAt": null
+    "updatedAt": "2026-10-16T08:16:17.409Z",
+    "completedAt": "2026-10-16T08:16:17.409Z"
   },
   {
     "id": "470839a1-1d4d-4d6a-9d44-b2d701a5d4cb",
     "title": "复制记录管理 -Tab角标点击‘任务记录’不要抖动",
     "desc": "",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-09T08:43:28.327Z",
-    "updatedAt": "2026-10-09T08:54:35.967Z",
-    "completedAt": null
+    "updatedAt": "2026-10-16T08:16:15.452Z",
+    "completedAt": "2026-10-16T08:16:15.452Z"
   },
   {
     "id": "2dc9ad69-81a0-4c2a-8912-422c41754bea",
@@ -272,7 +260,7 @@
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-10T06:55:49.374Z",
-    "updatedAt": "2026-10-10T06:55:49.374Z",
+    "updatedAt": "2026-10-16T08:16:25.972Z",
     "completedAt": null
   },
   {
@@ -388,143 +376,179 @@
     "title": "Home-店铺Logo换行",
     "desc": "小屏幕会遮挡文字的问题",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-15T07:09:49.646Z",
-    "updatedAt": "2026-10-15T07:09:49.646Z",
-    "completedAt": null
+    "updatedAt": "2026-10-15T08:44:21.894Z",
+    "completedAt": "2026-10-15T08:44:21.894Z"
   },
   {
     "id": "ddf43f10-c868-4caf-a711-0b909076eb42",
     "title": "点击logo空白区域也会选中的问题",
     "desc": "/Shop/Index 、Snatch/Goods/Index",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-15T07:13:02.327Z",
-    "updatedAt": "2026-10-15T07:44:06.206Z",
-    "completedAt": null
+    "updatedAt": "2026-10-15T08:44:35.188Z",
+    "completedAt": "2026-10-15T08:44:35.188Z"
   },
   {
     "id": "cbb07d2e-90a8-4605-acad-8a0bb69cf8bd",
     "title": "Goods-批量编辑商品 组件-Ace皮肤下",
     "desc": " 分页组件被遮挡、价格规格、重要属性其他属性的样式padding丢失",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-15T07:17:41.526Z",
-    "updatedAt": "2026-10-15T07:18:50.593Z",
-    "completedAt": null
+    "updatedAt": "2026-10-15T09:19:56.771Z",
+    "completedAt": "2026-10-15T09:19:56.771Z"
   },
   {
     "id": "2e95fede-6a65-4289-8e93-d5988438fcf1",
     "title": "/Goods/Step2",
     "desc": "底部被悬浮操作栏 遮挡",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-15T07:23:16.397Z",
-    "updatedAt": "2026-10-15T07:23:16.397Z",
-    "completedAt": null
+    "updatedAt": "2026-10-15T09:36:47.964Z",
+    "completedAt": "2026-10-15T09:36:47.964Z"
   },
   {
     "id": "1d9ca928-d622-4743-b42b-59d6203dce9f",
     "title": "/Goods/Step3",
     "desc": "当前共选中了几款要复制的商品，数字是红色",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-15T07:24:03.066Z",
-    "updatedAt": "2026-10-15T07:24:03.066Z",
-    "completedAt": null
+    "updatedAt": "2026-10-16T00:57:51.275Z",
+    "completedAt": "2026-10-16T00:57:51.275Z"
   },
   {
     "id": "bdeee0a8-6b51-4e98-9a28-0eaf2e682a65",
     "title": "参数设置",
     "desc": "服务与资质 通用配置加载要加loading、属性预设h2字体太小了、Sku引流定价 启用后 展示的输入内容UI问题、form-item的margin-bottom问题",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-15T07:27:14.572Z",
-    "updatedAt": "2026-10-15T07:55:17.729Z",
-    "completedAt": null
+    "updatedAt": "2026-10-16T01:11:57.203Z",
+    "completedAt": "2026-10-16T01:11:57.203Z"
   },
   {
     "id": "d1e586d9-6385-4f92-a27b-8bb75de5c9ca",
     "title": "复制记录管理",
     "desc": "任务批次-复制提醒alert上方没有margin、复制失败和跳过复制中详情前面应该只留修改商品按钮，然后在详情里面进行重试",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-15T07:34:58.881Z",
-    "updatedAt": "2026-10-15T07:39:30.050Z",
-    "completedAt": null
+    "updatedAt": "2026-10-16T01:16:13.364Z",
+    "completedAt": "2026-10-16T01:16:13.364Z"
   },
   {
     "id": "c732034f-f17d-434b-95c8-9eb1d57fde1b",
     "title": "页面提示词",
     "desc": "新增商品成功后，会自动发布抖音短视频、图文以获得更多商品曝光机会，如不需要，可在全局参数设置、分销铺货设置页面关闭  ；为什么有分销铺货设置页面",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-15T07:45:41.669Z",
-    "updatedAt": "2026-10-15T07:45:41.669Z",
-    "completedAt": null
+    "updatedAt": "2026-10-16T01:19:07.797Z",
+    "completedAt": "2026-10-16T01:19:07.797Z"
   },
   {
     "id": "19282b59-8ba3-402e-b323-331fb9a45640",
     "title": "Shop/Step1",
     "desc": " 点击复制margin消失",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-15T07:46:34.453Z",
-    "updatedAt": "2026-10-15T07:46:34.453Z",
-    "completedAt": null
+    "updatedAt": "2026-10-16T01:22:25.001Z",
+    "completedAt": "2026-10-16T01:22:25.001Z"
   },
   {
     "id": "44d2717d-e971-48e4-b495-9417758247a6",
     "title": "/Shop/Step3",
-    "desc": "点击批量修改商品类目 ，没反应",
+    "desc": "点击批量修改商品类目 ，没反应;hongware直接不加载数据、抖店不显示该按钮",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-15T07:48:30.172Z",
-    "updatedAt": "2026-10-15T07:48:30.172Z",
-    "completedAt": null
+    "updatedAt": "2026-10-16T07:57:14.993Z",
+    "completedAt": "2026-10-16T07:57:14.993Z"
   },
   {
     "id": "31ad3e20-fb3e-4a2f-8641-a5342e4a6eff",
     "title": "/Snatch#/Shops",
     "desc": "点击复制按钮的margin问题、授权到期日期-时间格式精简、我授权给他人的店铺 状态还是Normal/Canceled这样的字样",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-15T07:57:48.078Z",
-    "updatedAt": "2026-10-15T08:00:52.182Z",
-    "completedAt": null
+    "updatedAt": "2026-10-16T01:41:31.372Z",
+    "completedAt": "2026-10-16T01:41:31.372Z"
   },
   {
     "id": "c8fa69c3-71bf-46f8-8c56-cc878ab5c390",
     "title": "/DyImageText",
     "desc": "没有Title、悬浮操作栏没有顶格、card还有边框",
     "priority": "medium",
-    "status": "todo",
+    "status": "done",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-15T08:04:32.084Z",
-    "updatedAt": "2026-10-15T08:04:32.084Z",
+    "updatedAt": "2026-10-16T03:17:52.684Z",
+    "completedAt": "2026-10-16T03:17:52.684Z"
+  },
+  {
+    "id": "d2379d87-e1d6-4e6f-9d0f-fc255811dafc",
+    "title": "Wuyou.Component移到Wuyou.BaseInfo项目下",
+    "desc": "",
+    "priority": "medium",
+    "status": "done",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-10-16T03:18:20.153Z",
+    "updatedAt": "2026-10-16T08:15:47.833Z",
+    "completedAt": "2026-10-16T08:15:47.833Z"
+  },
+  {
+    "id": "7767bfd8-daf6-4e87-a538-150b4c4e0199",
+    "title": "Refine模块 生成白底图 从主图中选择增加一个按钮",
+    "desc": "",
+    "priority": "medium",
+    "status": "todo",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-10-16T03:31:30.204Z",
+    "updatedAt": "2026-10-16T03:31:30.204Z",
     "completedAt": null
+  },
+  {
+    "id": "c3872fff-1884-46a2-a1f6-b0ec0b404f60",
+    "title": "ali平台 乾坤的框架应该显示是gif",
+    "desc": "",
+    "priority": "medium",
+    "status": "done",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-10-16T06:48:49.194Z",
+    "updatedAt": "2026-10-16T07:57:21.555Z",
+    "completedAt": "2026-10-16T07:57:21.555Z"
   }
 ]
