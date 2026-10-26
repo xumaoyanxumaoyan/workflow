@@ -8,6 +8,7 @@ import {
   readArticles, writeArticles,
   readMemos, writeMemos,
   readFitness, writeFitness,
+  readFitnessTrash, writeFitnessTrash,
   readFreqFoods, writeFreqFoods,
   readCheckins, writeCheckins,
   initStorage
@@ -532,21 +533,31 @@ function normalizeFitnessRecord(body, prev = null) {
   }
 }
 
-// 保存记录时自动学习：有 名称+克重+千卡 的食物 → 更新每 100g 热量密度
+// 保存记录时自动学习常吃食物（记录过的全部食物都会进常吃库）：
+// - 名称+克重+千卡 → 记录每 100g 热量密度
+// - 缺克重/千卡 → 也入库（密度留空），累计使用次数
 function learnFreqFoods(foods) {
   const list = readFreqFoods()
   const nowIso = new Date().toISOString()
   for (const f of foods) {
-    if (!f?.name || !f?.grams || !f?.kcal) continue
-    const density = Math.round(((f.kcal / f.grams) * 100) * 10) / 10
+    if (!f?.name) continue
     const found = list.find((x) => x.name === f.name)
-    if (found) {
-      found.kcalPer100g = density
+    if (f.grams && f.kcal) {
+      const density = Math.round(((f.kcal / f.grams) * 100) * 10) / 10
+      if (found) {
+        found.kcalPer100g = density
+        found.useCount++
+        found.lastUsedAt = nowIso
+        found.updatedAt = nowIso
+      } else {
+        list.push({ id: crypto.randomUUID(), name: f.name, kcalPer100g: density, useCount: 1, lastUsedAt: nowIso, createdAt: nowIso, updatedAt: nowIso })
+      }
+    } else if (found) {
       found.useCount++
       found.lastUsedAt = nowIso
       found.updatedAt = nowIso
     } else {
-      list.push({ id: crypto.randomUUID(), name: f.name, kcalPer100g: density, useCount: 1, lastUsedAt: nowIso, createdAt: nowIso, updatedAt: nowIso })
+      list.push({ id: crypto.randomUUID(), name: f.name, kcalPer100g: null, useCount: 1, lastUsedAt: nowIso, createdAt: nowIso, updatedAt: nowIso })
     }
   }
   writeFreqFoods(list)

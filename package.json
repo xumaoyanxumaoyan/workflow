@@ -11,10 +11,10 @@
     "start": "node server/index.js"
   },
   "dependencies": {
+    "echarts": "^6.1.0",
     "express": "^4.21.2",
     "tdesign-icons-vue-next": "^0.3.6",
     "tdesign-vue-next": "^1.10.0",
-    "three": "^0.186.1",
     "vue": "^3.5.13",
     "vue-router": "^4.6.4"
   },

@@ -259,5 +259,57 @@
     "note": "",
     "createdAt": "2026-10-16T03:05:07.658Z",
     "updatedAt": "2026-10-16T03:05:07.658Z"
+  },
+  {
+    "id": "a52deb91-2a97-4d3c-af66-30f2f3fff54e",
+    "date": "2026-10-17",
+    "weight": 138.4,
+    "foods": [],
+    "exerciseMin": null,
+    "caloriesBurned": null,
+    "sleepHours": null,
+    "note": "",
+    "createdAt": "2026-10-19T02:08:41.955Z",
+    "updatedAt": "2026-10-19T02:08:41.955Z"
+  },
+  {
+    "id": "46914864-48d1-438d-b784-4941c36fa5c0",
+    "date": "2026-10-18",
+    "weight": 138.4,
+    "foods": [],
+    "exerciseMin": 180,
+    "caloriesBurned": 1000,
+    "sleepHours": null,
+    "note": "",
+    "createdAt": "2026-10-19T02:13:22.108Z",
+    "updatedAt": "2026-10-19T02:13:36.842Z"
+  },
+  {
+    "id": "3102c1c5-c968-4562-8ba2-3ad206e9edab",
+    "date": "2026-10-19",
+    "weight": 137,
+    "foods": [
+      {
+        "name": "榴莲",
+        "grams": 200,
+        "kcal": 300
+      },
+      {
+        "name": "盐巴青菜",
+        "grams": 50,
+        "kcal": 23
+      },
+      {
+        "name": "一盒牛奶",
+        "grams": 100,
+        "kcal": 54
+      }
+    ],
+    "exerciseMin": null,
+    "caloriesBurned": null,
+    "sleepHours": null,
+    "note": "",
+    "createdAt": "2026-10-19T02:33:49.833Z",
+    "updatedAt": "2026-10-19T02:33:49.833Z"
   }
 ]

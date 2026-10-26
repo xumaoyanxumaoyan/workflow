@@ -669,79 +669,36 @@ body {
   padding: 18px 20px 14px;
 }
 
-/* 3D 人形预览 */
-.wb-avatar-card {
-  background: linear-gradient(160deg, #f7f9ff 0%, #eef3ff 100%);
-  border: 1px solid var(--td-component-stroke, #e7e7e7);
+/* 体重趋势折线图卡片 */
+.wb-chart-card {
+  background: #fff;
   border-radius: 10px;
-  padding: 16px 20px;
-  margin-top: 16px;
+  padding: 16px 20px 10px;
   margin-bottom: 16px;
+}
+
+.wb-chart-head {
   display: flex;
-  gap: 20px;
-  align-items: stretch;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
 }
 
-.wb-avatar-canvas {
-  flex: 1.2;
-  min-width: 320px;
-  height: 430px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.wb-avatar-canvas canvas {
-  display: block;
-}
-
-.wb-avatar-params {
-  flex: 1;
-  min-width: 240px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.wb-avatar-title {
+.wb-chart-head .title {
   font-size: 15px;
   font-weight: 600;
   color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
 }
 
-.wb-avatar-hint {
-  margin: 4px 0 14px;
+.wb-chart-head .hint {
   font-size: 12px;
   color: var(--td-text-color-placeholder, rgba(0, 0, 0, 0.45));
 }
 
-.wb-avatar-unit {
-  margin-left: 6px;
-  font-size: 12px;
-  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+.wb-chart-body {
+  height: 260px;
 }
 
-.wb-avatar-bmi {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 12px 0;
-  font-size: 14px;
-  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
-}
-
-.wb-avatar-bmi-label {
-  font-size: 13px;
-}
-
-.wb-avatar-actions {
-  margin: 4px 0 8px;
-}
-
-.wb-avatar-note {
-  font-size: 12px;
-  line-height: 1.7;
-  color: var(--td-text-color-placeholder, rgba(0, 0, 0, 0.45));
-}
 
 @media (max-width: 900px) {
   .wb-avatar-card {

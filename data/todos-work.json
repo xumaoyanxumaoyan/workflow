@@ -550,5 +550,29 @@
     "createdAt": "2026-10-16T06:48:49.194Z",
     "updatedAt": "2026-10-16T07:57:21.555Z",
     "completedAt": "2026-10-16T07:57:21.555Z"
+  },
+  {
+    "id": "249e1d71-d081-45ed-869c-fcbc6dcea037",
+    "title": "Ace主题-水印管理-水印管理列表tabs的UI",
+    "desc": "",
+    "priority": "medium",
+    "status": "todo",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-10-26T02:03:40.406Z",
+    "updatedAt": "2026-10-26T02:03:40.406Z",
+    "completedAt": null
+  },
+  {
+    "id": "eebd7a44-262f-467d-aba7-e4c5524261fa",
+    "title": "前端单元测试+文档向量化+AI",
+    "desc": "",
+    "priority": "medium",
+    "status": "todo",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-10-26T02:04:31.693Z",
+    "updatedAt": "2026-10-26T02:04:31.693Z",
+    "completedAt": null
   }
 ]

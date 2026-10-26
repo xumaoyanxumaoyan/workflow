@@ -16,6 +16,7 @@ const FILES = {
   memos: path.join(DATA_DIR, 'memos.json'),
   fitness: path.join(DATA_DIR, 'fitness.json'),
   freqFoods: path.join(DATA_DIR, 'freq-foods.json'),
+  fitnessTrash: path.join(DATA_DIR, 'fitness-trash.json'),
   checkins: path.join(DATA_DIR, 'checkins.json'),
   legacy: path.join(DATA_DIR, 'db.json') // 旧版单文件，迁移后仅作备份
 }
@@ -274,6 +275,15 @@ export function writeFitness(list) {
   writeJson(FILES.fitness, list)
 }
 
+/* ---------- 删除回收站（防误删，可恢复） ---------- */
+export function readFitnessTrash() {
+  return readJsonArray(FILES.fitnessTrash, [])
+}
+
+export function writeFitnessTrash(list) {
+  writeJson(FILES.fitnessTrash, list.slice(0, 20))
+}
+
 /* ---------- 常吃食物库（独立文件 freq-foods.json，自动学习每 100g 热量） ---------- */
 const seedFreqFoods = [
   { id: 'seed-ff-1', name: '鸡胸肉', kcalPer100g: 133, useCount: 2, lastUsedAt: '2025-07-11T08:00:00.000Z', createdAt: '2025-07-10T08:00:00.000Z', updatedAt: '2025-07-11T08:00:00.000Z' },
@@ -333,4 +343,5 @@ export function initStorage() {
   readFitness()
   readFreqFoods()
   readCheckins()
+  readFitnessTrash()
 }
