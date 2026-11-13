@@ -8,19 +8,6 @@
         <t-tag size="small" variant="light-outline">个人版</t-tag>
       </div>
       <div class="wb-header-right">
-        <button class="wb-exam-shortcut" @click="onNav('sa')" title="去系统架构师备考页">
-          <template v-if="countdown.phase === 'before'">
-            <span class="icon">⏳</span>距考试
-            <b class="days">{{ countdown.days }}</b>天
-            <span class="mono">{{ pad(countdown.hours) }}:{{ pad(countdown.minutes) }}:{{ pad(countdown.seconds) }}</span>
-          </template>
-          <template v-else-if="countdown.phase === 'ongoing'">
-            <span class="icon">🎉</span>考试进行中
-          </template>
-          <template v-else>
-            <span class="icon">🏆</span>考试已结束
-          </template>
-        </button>
         <span class="wb-today">{{ todayText }}</span>
       </div>
     </t-header>
@@ -34,9 +21,9 @@
             <template #icon><task-icon /></template>
             待办工作台
           </t-menu-item>
-          <t-menu-item value="sa">
-            <template #icon><file-icon /></template>
-            系统架构师备考
+          <t-menu-item value="plan">
+            <template #icon><calendar-icon /></template>
+            今日计划
           </t-menu-item>
           <t-menu-item value="fitness">
             <template #icon><rocket-icon /></template>
@@ -63,15 +50,12 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { TaskIcon, Edit1Icon, FileIcon, BookmarkIcon, RocketIcon } from 'tdesign-icons-vue-next'
-import { useExamCountdown } from '../composables/useExamCountdown'
+import { TaskIcon, Edit1Icon, BookmarkIcon, RocketIcon, CalendarIcon } from 'tdesign-icons-vue-next'
 
 const route = useRoute()
 const router = useRouter()
 
-const { countdown, pad } = useExamCountdown()
-
-const activeMenu = computed(() => (['todo', 'journal', 'sa', 'article', 'memo', 'fitness'].includes(route.name) ? route.name : 'todo'))
+const activeMenu = computed(() => (['todo', 'plan', 'journal', 'article', 'memo', 'fitness'].includes(route.name) ? route.name : 'todo'))
 
 function onNav(name) {
   router.push({ name })

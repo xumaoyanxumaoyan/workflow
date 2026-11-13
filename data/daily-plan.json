@@ -1,0 +1,116 @@
+[
+  {
+    "id": "8ddbcd54-f6d5-4e63-b650-0cc68c374dc4",
+    "date": "2026-10-28",
+    "enabled": false,
+    "tasks": [
+      {
+        "id": "f0f998eb-955f-4c69-99b7-923c2c21e335",
+        "text": "学习测试-chapter3",
+        "time": "10:10",
+        "duration": 45,
+        "note": "",
+        "done": true,
+        "doneAt": "2026-10-28T02:46:06.452Z"
+      },
+      {
+        "id": "e79ac2be-c0d6-4599-9084-1a426930d293",
+        "text": "梳理工作内容",
+        "time": "11:05",
+        "duration": 45,
+        "note": "",
+        "done": true,
+        "doneAt": "2026-10-28T05:20:28.111Z"
+      },
+      {
+        "id": "5315243b-5cd8-43eb-8f57-88d9cf220fb8",
+        "text": "学习-测试chapter4",
+        "time": "13:15",
+        "duration": 45,
+        "note": "",
+        "done": true,
+        "doneAt": "2026-10-28T05:53:44.546Z"
+      },
+      {
+        "id": "2edbfa2a-946b-4077-b5c1-fc077fa69034",
+        "text": "优化项目",
+        "time": "14:10",
+        "duration": 45,
+        "note": "",
+        "done": true,
+        "doneAt": "2026-10-28T07:00:47.498Z"
+      },
+      {
+        "id": "0a190db2-756d-4907-b660-24a0d26fa4f3",
+        "text": "新增整店复制脚本",
+        "time": "15:15",
+        "duration": 120,
+        "note": "",
+        "done": true,
+        "doneAt": "2026-10-28T09:23:07.460Z"
+      }
+    ],
+    "startedAt": null,
+    "completedAt": null,
+    "createdAt": "2026-10-28T01:53:34.257Z",
+    "updatedAt": "2026-10-28T09:23:07.460Z"
+  },
+  {
+    "id": "87dfa415-9042-4bff-97d0-9cab642f01aa",
+    "date": "2026-10-29",
+    "enabled": false,
+    "tasks": [
+      {
+        "id": "ca4d6d62-e079-499a-887a-dada40e13954",
+        "text": "开会议",
+        "time": "13:00",
+        "duration": 60,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      },
+      {
+        "id": "0dda65fd-f04c-4d33-b9cb-6349155f3854",
+        "text": "验证1条自动化测试场景",
+        "time": "09:30",
+        "duration": 140,
+        "note": "",
+        "done": true,
+        "doneAt": "2026-10-29T02:48:53.727Z"
+      },
+      {
+        "id": "604052e9-742b-415e-8ed2-6781d98e44c5",
+        "text": "验证禅道用例到自动化测试",
+        "time": "14:30",
+        "duration": 60,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      }
+    ],
+    "startedAt": null,
+    "completedAt": null,
+    "createdAt": "2026-10-29T01:29:39.217Z",
+    "updatedAt": "2026-10-29T03:59:19.108Z"
+  },
+  {
+    "id": "6b350866-77b5-42da-9246-e38c2bf3d03b",
+    "date": "2026-10-30",
+    "enabled": false,
+    "tasks": [
+      {
+        "id": "3b044fa4-10c4-40d5-afee-3bef0a81015a",
+        "text": "整理下午需要汇报的内容",
+        "time": "09:43",
+        "duration": 120,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      }
+    ],
+    "startedAt": null,
+    "completedAt": null,
+    "createdAt": "2026-10-30T01:44:06.101Z",
+    "updatedAt": "2026-10-30T01:44:06.101Z"
+  }
+]

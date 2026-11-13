@@ -232,7 +232,13 @@ const filteredTodos = computed(() => {
       }
       return true
     })
-    .sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''))
+    // 待办状态永远置顶，其余按创建时间倒序
+    .sort((a, b) => {
+      if ((a.status === 'todo') !== (b.status === 'todo')) {
+        return a.status === 'todo' ? -1 : 1
+      }
+      return (b.createdAt || '').localeCompare(a.createdAt || '')
+    })
 })
 
 /* ---------- 统计 ---------- */

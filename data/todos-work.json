@@ -566,13 +566,61 @@
   {
     "id": "eebd7a44-262f-467d-aba7-e4c5524261fa",
     "title": "前端单元测试+文档向量化+AI",
-    "desc": "",
+    "desc": "三、 传统测试 vs. AI智能测试\n维度\n传统自动化测试\nAI智能测试\n用例编写\n人工编写脚本，逻辑固化\n大模型解析需求/文档自动生成\n脚本维护\n页面微调导致大量脚本失效，维护成本高\n元素变动时AI自动修复（自愈）\n覆盖广度\n依赖预设路径，难以覆盖边界逻辑\n智能遍历与Agent自主探索，发现未知异常",
     "priority": "medium",
     "status": "todo",
     "dueDate": "",
     "tags": [],
     "createdAt": "2026-10-26T02:04:31.693Z",
-    "updatedAt": "2026-10-26T02:04:31.693Z",
+    "updatedAt": "2026-10-26T03:20:03.080Z",
+    "completedAt": null
+  },
+  {
+    "id": "9f2f0ef1-ab3e-4132-882a-b5c3c4140b6b",
+    "title": "cps 将Framework模式迁移过来",
+    "desc": "",
+    "priority": "medium",
+    "status": "todo",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-10-26T03:00:10.641Z",
+    "updatedAt": "2026-10-26T03:00:10.641Z",
+    "completedAt": null
+  },
+  {
+    "id": "d1b87a5a-ee24-4ec8-afc6-4610920324c8",
+    "title": "移动端的分销铺货部分的代码",
+    "desc": "",
+    "priority": "medium",
+    "status": "todo",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-10-26T03:04:44.911Z",
+    "updatedAt": "2026-10-26T03:04:44.911Z",
+    "completedAt": null
+  },
+  {
+    "id": "cafad669-b5b4-4b87-9e9e-bc5b5d2e8656",
+    "title": "主图水印-投放设置-计划名称margin-top缺失",
+    "desc": "选择商品-选择整店商品-仓库中和出售中二选一最好；手动选择切换到整店商品选项，商品列表状态要发生变化。",
+    "priority": "medium",
+    "status": "todo",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-10-26T03:10:20.656Z",
+    "updatedAt": "2026-10-26T03:12:45.408Z",
+    "completedAt": null
+  },
+  {
+    "id": "bea6e743-45a4-458b-abcb-bea83c7d6790",
+    "title": "抖店通知组件融合到外部配置文件",
+    "desc": "这个组件不走配置文件，就是前端判断到抖店就去加载下抖店的方法",
+    "priority": "high",
+    "status": "todo",
+    "dueDate": "",
+    "tags": [],
+    "createdAt": "2026-10-26T09:16:04.983Z",
+    "updatedAt": "2026-10-26T09:16:04.983Z",
     "completedAt": null
   }
 ]

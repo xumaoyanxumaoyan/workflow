@@ -311,5 +311,17 @@
     "note": "",
     "createdAt": "2026-10-19T02:33:49.833Z",
     "updatedAt": "2026-10-19T02:33:49.833Z"
+  },
+  {
+    "id": "ba8a56b6-113c-45d5-bb54-dcbddefd7f8c",
+    "date": "2026-11-13",
+    "weight": 137.9,
+    "foods": [],
+    "exerciseMin": null,
+    "caloriesBurned": null,
+    "sleepHours": null,
+    "note": "",
+    "createdAt": "2026-11-13T01:59:17.705Z",
+    "updatedAt": "2026-11-13T01:59:17.705Z"
   }
 ]

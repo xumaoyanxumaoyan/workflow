@@ -10,13 +10,13 @@ import {
   readFitness, writeFitness,
   readFitnessTrash, writeFitnessTrash,
   readFreqFoods, writeFreqFoods,
-  readCheckins, writeCheckins,
+  readDailyPlan, writeDailyPlan,
   initStorage
 } from './db.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const app = express()
-const PORT = process.env.PORT || 3101
+const PORT = process.env.PORT || 3600
 
 app.use(express.json({ limit: '10mb' }))
 
@@ -204,7 +204,7 @@ api.get('/export', (_req, res) => {
     memos: readMemos(),
     fitness: readFitness(),
     freqFoods: readFreqFoods(),
-    checkins: readCheckins()
+    dailyPlan: readDailyPlan()
   }
   res.setHeader('Content-Type', 'application/json; charset=utf-8')
   res.setHeader('Content-Disposition', 'attachment; filename="todo-workbench-export.json"')
@@ -348,17 +348,14 @@ api.post('/import', (req, res) => {
     writeFreqFoods(clean)
     count += clean.length
   }
-  if (body?.checkins && typeof body.checkins === 'object' && !Array.isArray(body.checkins)) {
-    const clean = {}
-    for (const [date, day] of Object.entries(body.checkins)) {
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !day || typeof day !== 'object') continue
-      const cleanDay = {}
-      if (day.am) cleanDay.am = { done: !!day.am.done, updatedAt: day.am.updatedAt || new Date().toISOString() }
-      if (day.pm) cleanDay.pm = { done: !!day.pm.done, updatedAt: day.pm.updatedAt || new Date().toISOString() }
-      if (cleanDay.am || cleanDay.pm) clean[date] = cleanDay
-    }
-    writeCheckins(clean)
-    count += Object.keys(clean).length
+  const dailyPlanIn = Array.isArray(body?.dailyPlan) ? body.dailyPlan : null
+  if (dailyPlanIn !== null) {
+    // 导入时以原记录作为 prev，保留 id、开始时间和完成时间
+    const clean = dedup(
+      dailyPlanIn.filter((r) => r && typeof r === 'object').map((r) => normalizeDailyPlanRecord(r, r))
+    )
+    writeDailyPlan(clean)
+    count += clean.length
   }
   res.json({ code: 0, data: { count } })
 })
@@ -588,6 +585,60 @@ api.delete('/fitness/:id', (req, res) => {
   res.json({ code: 0, data: { removed: before - list.length } })
 })
 
+/* ================= 今日计划（独立文件 daily-plan.json，按日期 upsert） ================= */
+
+// 开关打开 = 进行中（首次打开记录开始时间）；completed: true = 完成当天计划，开关自动关闭并记录完成时间
+// 重新打开开关会清空完成时间，允许再次编辑
+function normalizeDailyPlanRecord(body, prev = null) {
+  const nowIso = new Date().toISOString()
+  const enabled = body?.completed === true ? false : body?.enabled !== undefined ? !!body.enabled : !!prev?.enabled
+  return {
+    id: prev?.id || crypto.randomUUID(),
+    date: /^\d{4}-\d{2}-\d{2}$/.test(String(body?.date || '')) ? String(body.date) : (prev?.date || nowIso.slice(0, 10)),
+    enabled,
+    tasks: Array.isArray(body?.tasks)
+      ? body.tasks
+          .filter((t) => t && typeof t === 'object' && String(t.text || '').trim())
+          .map((t) => {
+            const id = String(t.id || crypto.randomUUID())
+            const old = prev?.tasks?.find((x) => x.id === id)
+            const done = !!t.done
+            return {
+              id,
+              text: String(t.text).trim(),
+              time: /^\d{2}:\d{2}$/.test(String(t.time || '')) ? String(t.time) : '',
+              duration: Number(t.duration) > 0 ? Math.round(Number(t.duration)) : 0,
+              note: String(t.note || '').trim(),
+              done,
+              // 首次勾选记录完成时刻，取消勾选后清空
+              doneAt: done ? (old?.done && old.doneAt) || nowIso : null
+            }
+          })
+      : (prev?.tasks || []),
+    startedAt: enabled && !prev?.enabled ? nowIso : (prev?.startedAt ?? null),
+    completedAt: body?.completed === true ? (prev?.completedAt || nowIso) : enabled ? null : (prev?.completedAt ?? null),
+    createdAt: prev?.createdAt || nowIso,
+    updatedAt: nowIso
+  }
+}
+
+// 列表
+api.get('/daily-plan', (_req, res) => {
+  res.json({ code: 0, data: readDailyPlan() })
+})
+
+// 保存（同一日期视为同一天，直接覆盖更新）
+api.post('/daily-plan', (req, res) => {
+  const list = readDailyPlan()
+  const date = /^\d{4}-\d{2}-\d{2}$/.test(String(req.body?.date || '')) ? String(req.body.date) : new Date().toISOString().slice(0, 10)
+  const idx = list.findIndex((r) => r.date === date)
+  const record = normalizeDailyPlanRecord({ ...req.body, date }, idx !== -1 ? list[idx] : null)
+  if (idx !== -1) list[idx] = record
+  else list.push(record)
+  writeDailyPlan(list)
+  res.json({ code: 0, data: record })
+})
+
 /* ---------- 常吃食物库 ---------- */
 api.get('/freq-foods', (_req, res) => {
   res.json({ code: 0, data: readFreqFoods() })
@@ -598,25 +649,6 @@ api.delete('/freq-foods/:id', (req, res) => {
   const before = list.length
   writeFreqFoods(list.filter((f) => f.id !== req.params.id))
   res.json({ code: 0, data: { removed: before - list.length } })
-})
-
-/* ================= 备考打卡（checkins.json） ================= */
-
-api.get('/checkins', (_req, res) => {
-  res.json({ code: 0, data: readCheckins() })
-})
-
-// 打卡切换：{ date, slot: 'am' | 'pm', done }
-api.post('/checkins/toggle', (req, res) => {
-  const date = /^\d{4}-\d{2}-\d{2}$/.test(String(req.body?.date || '')) ? String(req.body.date) : null
-  const slot = req.body?.slot === 'am' || req.body?.slot === 'pm' ? req.body.slot : null
-  if (!date || !slot) return res.status(400).json({ code: 1, message: '参数不正确' })
-  const data = readCheckins()
-  const day = data[date] || {}
-  day[slot] = { done: !!req.body?.done, updatedAt: new Date().toISOString() }
-  data[date] = day
-  writeCheckins(data)
-  res.json({ code: 0, data: { date, slot, done: !!req.body?.done } })
 })
 
 app.use('/api', api)

@@ -16,8 +16,8 @@ const FILES = {
   memos: path.join(DATA_DIR, 'memos.json'),
   fitness: path.join(DATA_DIR, 'fitness.json'),
   freqFoods: path.join(DATA_DIR, 'freq-foods.json'),
+  dailyPlan: path.join(DATA_DIR, 'daily-plan.json'),
   fitnessTrash: path.join(DATA_DIR, 'fitness-trash.json'),
-  checkins: path.join(DATA_DIR, 'checkins.json'),
   legacy: path.join(DATA_DIR, 'db.json') // 旧版单文件，迁移后仅作备份
 }
 
@@ -299,29 +299,15 @@ export function writeFreqFoods(list) {
   writeJson(FILES.freqFoods, list)
 }
 
-/* ---------- 备考打卡（独立文件 checkins.json：按日期记忆上午/下午打卡状态） ---------- */
-const seedCheckins = {}
+/* ---------- 今日计划（独立文件 daily-plan.json，每日一条记录） ---------- */
+const seedDailyPlan = []
 
-export function readCheckins() {
-  ensureDataDir()
-  if (!fs.existsSync(FILES.checkins)) {
-    writeJson(FILES.checkins, seedCheckins)
-    return { ...seedCheckins }
-  }
-  try {
-    const data = JSON.parse(fs.readFileSync(FILES.checkins, 'utf8'))
-    return data && typeof data === 'object' && !Array.isArray(data) ? data : { ...seedCheckins }
-  } catch {
-    try {
-      fs.copyFileSync(FILES.checkins, FILES.checkins + '.broken-' + Date.now())
-    } catch { /* ignore */ }
-    fs.writeFileSync(FILES.checkins, JSON.stringify(seedCheckins, null, 2), 'utf8')
-    return { ...seedCheckins }
-  }
+export function readDailyPlan() {
+  return readJsonArray(FILES.dailyPlan, seedDailyPlan)
 }
 
-export function writeCheckins(data) {
-  writeJson(FILES.checkins, data || {})
+export function writeDailyPlan(list) {
+  writeJson(FILES.dailyPlan, list)
 }
 
 export function todoFile(domain) {
@@ -342,6 +328,6 @@ export function initStorage() {
   readMemos()
   readFitness()
   readFreqFoods()
-  readCheckins()
   readFitnessTrash()
+  readDailyPlan()
 }

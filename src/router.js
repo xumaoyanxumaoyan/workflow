@@ -20,10 +20,10 @@ const routes = [
         meta: { title: '写日志' }
       },
       {
-        path: 'SA',
-        name: 'sa',
-        component: () => import('./pages/SaPage.vue'),
-        meta: { title: '系统架构师备考' }
+        path: 'plan',
+        name: 'plan',
+        component: () => import('./pages/DailyPlanPage.vue'),
+        meta: { title: '今日计划' }
       },
       {
         path: 'article',
