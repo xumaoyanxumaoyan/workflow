@@ -11,6 +11,7 @@ import {
   readFitnessTrash, writeFitnessTrash,
   readFreqFoods, writeFreqFoods,
   readDailyPlan, writeDailyPlan,
+  readPlanNote, writePlanNote,
   initStorage
 } from './db.js'
 
@@ -204,7 +205,8 @@ api.get('/export', (_req, res) => {
     memos: readMemos(),
     fitness: readFitness(),
     freqFoods: readFreqFoods(),
-    dailyPlan: readDailyPlan()
+    dailyPlan:   readDailyPlan(),
+    planNote:    readPlanNote()
   }
   res.setHeader('Content-Type', 'application/json; charset=utf-8')
   res.setHeader('Content-Disposition', 'attachment; filename="todo-workbench-export.json"')
@@ -625,6 +627,18 @@ function normalizeDailyPlanRecord(body, prev = null) {
 // 列表
 api.get('/daily-plan', (_req, res) => {
   res.json({ code: 0, data: readDailyPlan() })
+})
+
+// 长期事项横幅文案
+api.get('/daily-plan/note', (_req, res) => {
+  res.json({ code: 0, data: readPlanNote() })
+})
+
+api.put('/daily-plan/note', (req, res) => {
+  const content = String(req.body?.content || '').trim()
+  if (!content) return res.status(400).json({ code: 1, message: '内容不能为空' })
+  writePlanNote(content)
+  res.json({ code: 0, data: content })
 })
 
 // 保存（同一日期视为同一天，直接覆盖更新）

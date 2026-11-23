@@ -112,5 +112,142 @@
     "completedAt": null,
     "createdAt": "2026-10-30T01:44:06.101Z",
     "updatedAt": "2026-10-30T01:44:06.101Z"
+  },
+  {
+    "id": "e8397299-8364-40f0-b1e7-43f9a746996c",
+    "date": "2026-11-24",
+    "enabled": false,
+    "tasks": [
+      {
+        "id": "cc811bd3-96dc-485d-9489-35333c4dd227",
+        "text": "前一天让妈妈给电瓶车充电",
+        "time": "",
+        "duration": 0,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      },
+      {
+        "id": "47786cdd-35f8-43ca-bccc-fdd6a8040460",
+        "text": "称体重",
+        "time": "07:10",
+        "duration": 10,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      },
+      {
+        "id": "af356ccc-29d1-45bd-82f2-860a74f84710",
+        "text": "吃早饭（拍照1）",
+        "time": "08:50",
+        "duration": 20,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      },
+      {
+        "id": "256de4b0-1e42-4e75-af48-08fda1dcf1fd",
+        "text": "看下前端负责人怎么面试-学习前端技术",
+        "time": "09:10",
+        "duration": 60,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      },
+      {
+        "id": "118a73c7-519f-46b1-b7b2-8f1a2f41fe4c",
+        "text": "中午饭（拍照2）",
+        "time": "10:10",
+        "duration": 30,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      },
+      {
+        "id": "939f7cdb-7f29-48da-aada-dd0dbc96524b",
+        "text": "下午实现商品和订单的切换功能 + 关注下乾坤发布的情况 + 二次评审下切换的设计稿",
+        "time": "10:40",
+        "duration": 120,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      },
+      {
+        "id": "5a9ce48f-a041-4d1f-bb5a-f021ba76b0e3",
+        "text": "写总结",
+        "time": "17:00",
+        "duration": 20,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      },
+      {
+        "id": "91f0123d-2374-4ca5-938a-9d8abaab969a",
+        "text": "下班",
+        "time": "17:30",
+        "duration": 10,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      },
+      {
+        "id": "09271736-c8f4-4995-b23f-6d153bfa98dd",
+        "text": "直接去打球（不吃晚餐）",
+        "time": "18:30",
+        "duration": 30,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      },
+      {
+        "id": "66ce728f-227e-4e56-a25d-a30a34812667",
+        "text": "学习打羽毛球技巧（拍照）",
+        "time": "19:00",
+        "duration": 60,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      },
+      {
+        "id": "29101fd4-eea3-4e6b-93e4-4e797d1024c9",
+        "text": "拉伸",
+        "time": "22:00",
+        "duration": 15,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      },
+      {
+        "id": "4a6edaef-8f4b-4ea1-a5f9-10d21163f7d8",
+        "text": "打车回家",
+        "time": "22:15",
+        "duration": 15,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      },
+      {
+        "id": "bcd6cfed-f57a-499b-9b16-123a1662dc07",
+        "text": "泡脚 + 写日志 + 写减肥公众号 + 写第二天的计划",
+        "time": "22:30",
+        "duration": 30,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      },
+      {
+        "id": "cb663dc8-cbda-4ac8-9b20-d209eeaadde6",
+        "text": "睡觉",
+        "time": "23:00",
+        "duration": 60,
+        "note": "",
+        "done": false,
+        "doneAt": null
+      }
+    ],
+    "startedAt": null,
+    "completedAt": null,
+    "createdAt": "2026-11-23T15:09:22.230Z",
+    "updatedAt": "2026-11-23T15:12:57.616Z"
   }
 ]

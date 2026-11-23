@@ -1,9 +1,18 @@
 <template>
   <div class="wb-content">
+    <!-- 长期事项横幅 -->
+    <div class="wb-plan-note">
+      <div class="wb-plan-note-head">
+        <span class="wb-plan-note-title">📌 长期需要做的事情</span>
+        <t-button variant="text" size="small" @click="openNoteEdit">编辑</t-button>
+      </div>
+      <p class="wb-plan-note-text">{{ planNote || '（点击"编辑"填写长期需要坚持的事情）' }}</p>
+    </div>
+
     <!-- 页面头：日期切换 + 计划开关（只有今天可以开关） -->
     <div class="wb-page-head">
       <div class="wb-plan-nav">
-        <h3>{{ isToday ? '今日计划' : '历史计划' }}</h3>
+        <h3>{{ pageDayLabel }}</h3>
         <t-button variant="outline" size="small" @click="shiftDay(-1)">前一天</t-button>
         <input v-model="selectedDate" type="date" class="wb-plan-date-input" />
         <t-button variant="outline" size="small" @click="shiftDay(1)">后一天</t-button>
@@ -20,7 +29,7 @@
 
     <div class="wb-plan-card">
       <div class="wb-plan-card-head">
-        <span class="wb-plan-card-title">工作内容<span v-if="!isToday" class="wb-plan-readonly">（历史计划，只读）</span></span>
+        <span class="wb-plan-card-title">工作内容<span v-if="isPast" class="wb-plan-readonly">（历史计划，只读）</span><span v-else-if="isFuture" class="wb-plan-readonly">（可提前规划）</span></span>
         <span class="wb-plan-progress">已完成 <b>{{ doneCount }}</b> / {{ tasks.length }}</span>
       </div>
 
@@ -121,6 +130,20 @@
         </t-popconfirm>
       </div>
     </t-dialog>
+
+    <!-- 长期事项编辑弹窗 -->
+    <t-dialog
+      v-model:visible="noteDialogVisible"
+      header="编辑长期需要做的事情"
+      confirm-btn="保存"
+      @confirm="saveNote"
+    >
+      <t-textarea
+        v-model="noteDraft"
+        :autosize="{ minRows: 5, maxRows: 12 }"
+        placeholder="填写长期需要坚持的事情"
+      />
+    </t-dialog>
   </div>
 </template>
 
@@ -141,6 +164,10 @@ const todayStr = computed(() => `${now.value.getFullYear()}-${pad(now.value.getM
 // 当前查看的日期；跨天时如果正在看今天，自动跟到新的一天
 const selectedDate = ref(todayStr.value)
 const isToday = computed(() => selectedDate.value === todayStr.value)
+const dateCmp = () => (selectedDate.value < todayStr.value ? -1 : selectedDate.value > todayStr.value ? 1 : 0)
+const isPast = computed(() => dateCmp() < 0)
+const isFuture = computed(() => dateCmp() > 0)
+const pageDayLabel = computed(() => (isToday.value ? '今日计划' : isFuture.value ? '未来计划' : '历史计划'))
 watch(todayStr, (next, prev) => {
   if (selectedDate.value === prev) selectedDate.value = next
 })
@@ -182,12 +209,13 @@ const plan = computed(
 const enabled = computed(() => plan.value.enabled)
 const tasks = computed(() => plan.value.tasks)
 const doneCount = computed(() => tasks.value.filter((t) => t.done).length)
-// 历史日期只读；今天完成后锁定内容，重新打开开关才能再次编辑
-const locked = computed(() => !isToday.value || !!plan.value.completedAt)
+// 历史日期只读；未来日期可提前规划；今天完成后锁定内容，重新打开开关才能再次编辑
+const locked = computed(() => isPast.value || !!plan.value.completedAt)
 
 const status = computed(() => {
   if (plan.value.completedAt) return { label: '已完成', theme: 'success' }
-  if (!isToday.value) return { label: '未完成', theme: 'warning' }
+  if (isPast.value) return { label: '未完成', theme: 'warning' }
+  if (isFuture.value) return { label: '待开始', theme: 'default' }
   if (plan.value.enabled) return { label: '进行中', theme: 'primary' }
   return { label: '未开始', theme: 'default' }
 })
@@ -259,14 +287,37 @@ const nowY = computed(() => {
 async function load() {
   try {
     records.value = await api.listDailyPlan()
+    planNote.value = await api.getDailyPlanNote()
   } catch (e) {
     MessagePlugin.error(e.message)
   }
 }
 onMounted(load)
 
+/* ---------- 长期事项横幅 ---------- */
+const planNote = ref('')
+const noteDialogVisible = ref(false)
+const noteDraft = ref('')
+
+function openNoteEdit() {
+  noteDraft.value = planNote.value
+  noteDialogVisible.value = true
+}
+
+async function saveNote() {
+  const content = (noteDraft.value || '').trim()
+  if (!content) return MessagePlugin.warning('内容不能为空')
+  try {
+    planNote.value = await api.saveDailyPlanNote(content)
+    noteDialogVisible.value = false
+    MessagePlugin.success('长期事项已更新')
+  } catch (e) {
+    MessagePlugin.error(e.message)
+  }
+}
+
 async function save(patch) {
-  if (locked.value && !isToday.value) return null
+  if (locked.value) return null
   saving.value = true
   try {
     const saved = await api.saveDailyPlan({ date: selectedDate.value, ...patch })

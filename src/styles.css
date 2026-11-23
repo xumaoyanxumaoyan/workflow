@@ -579,6 +579,38 @@ body {
 }
 
 /* 今日计划 */
+/* 长期事项横幅 */
+.wb-plan-note {
+  background: #fff;
+  border: 1px solid var(--td-component-stroke, #e7e7e7);
+  border-left: 4px solid var(--td-warning-color, #e37318);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+}
+
+.wb-plan-note-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.wb-plan-note-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
+}
+
+.wb-plan-note-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
 .wb-plan-nav {
   display: flex;
   align-items: center;

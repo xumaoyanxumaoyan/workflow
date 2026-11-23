@@ -88,6 +88,12 @@ export const deleteFreqFood = (id) => request(`/api/freq-foods/${id}`, { method:
 /* ---------- 今日计划 ---------- */
 export const listDailyPlan = () => request('/api/daily-plan')
 
+// 长期事项横幅文案
+export const getDailyPlanNote = () => request('/api/daily-plan/note')
+
+export const saveDailyPlanNote = (content) =>
+  request('/api/daily-plan/note', { method: 'PUT', body: JSON.stringify({ content }) })
+
 // 同一日期保存会覆盖当天记录；completed: true 表示完成当天计划
 export const saveDailyPlan = (payload) =>
   request('/api/daily-plan', { method: 'POST', body: JSON.stringify(payload) })

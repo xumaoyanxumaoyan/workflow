@@ -17,6 +17,7 @@ const FILES = {
   fitness: path.join(DATA_DIR, 'fitness.json'),
   freqFoods: path.join(DATA_DIR, 'freq-foods.json'),
   dailyPlan: path.join(DATA_DIR, 'daily-plan.json'),
+  planNote: path.join(DATA_DIR, 'plan-note.json'),
   fitnessTrash: path.join(DATA_DIR, 'fitness-trash.json'),
   legacy: path.join(DATA_DIR, 'db.json') // 旧版单文件，迁移后仅作备份
 }
@@ -308,6 +309,28 @@ export function readDailyPlan() {
 
 export function writeDailyPlan(list) {
   writeJson(FILES.dailyPlan, list)
+}
+
+/* ---------- 计划模块长期事项横幅文案（独立文件 plan-note.json） ---------- */
+const DEFAULT_PLAN_NOTE =
+  '长期需要做的事情：每天减肥/拉伸/泡脚/早睡/拍饮食/称体重、每天学新东西、每天写日志总结反思、每天输出（暂定公众号、视频）、每天心态好、每天准备面试、每天睡前想第二天的计划和注意事项、每天下班前总结今天学习了什么'
+
+export function readPlanNote() {
+  ensureDataDir()
+  if (!fs.existsSync(FILES.planNote)) {
+    writeJson(FILES.planNote, { content: DEFAULT_PLAN_NOTE })
+    return DEFAULT_PLAN_NOTE
+  }
+  try {
+    const data = JSON.parse(fs.readFileSync(FILES.planNote, 'utf8'))
+    return String(data?.content ?? DEFAULT_PLAN_NOTE)
+  } catch {
+    return DEFAULT_PLAN_NOTE
+  }
+}
+
+export function writePlanNote(content) {
+  writeJson(FILES.planNote, { content: String(content) })
 }
 
 export function todoFile(domain) {
