@@ -33,6 +33,15 @@
       "remark": "",
       "createdAt": "2026-10-15T06:47:25.188Z",
       "updatedAt": "2026-10-15T06:48:55.631Z"
+    },
+    {
+      "id": "bbc9d626-d35c-437a-a3e7-cfb4572230e2",
+      "folderId": null,
+      "title": "Skill",
+      "url": "",
+      "remark": "禅道-UI界面\n运行测试项目-UI界面\n \t-点击【生成测试用例】按钮：/testcase-generate /zantao-cli Skill 根据禅道Bug目录，去生成测试用例，返回测试用例的禅道地址。\n\t-点击【读取测试用例】按钮：/zantao-cli Skill 打开禅道的UI界面地址。\n\t-在修改和删除测试用例\n\t-根据测试用例 /playwright-cli Skill 【playwright codegen --target=python-pytest】 去录制符合用例的场景，复制到【文件夹-录制脚本】下。\n\t-/codegen-to-pom Skill 将指定录制脚本，数据保存到data目录，脚本在tests目录，po对象保存pages目录\n\t-python run.py run 验证自动化流程是否符合要求。\n\n\nAgent的服务是否能通过指定API key+大模型 独立调用，全流程可以一键生成最终tests下的脚本，相当于AI帮你写代码，人只需要在Web上指定范围和验收结果。\n\t\n\t \n\t\n",
+      "createdAt": "2026-11-24T08:18:31.564Z",
+      "updatedAt": "2026-11-24T08:18:31.564Z"
     }
   ]
 }
